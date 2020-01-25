@@ -29,7 +29,7 @@ function Push(){
     git push origin master
 }
 
-while [[ 1 ]]
+while [[ true ]]
 do
     clear
     echo "Git Helper"
