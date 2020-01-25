@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Created By Jugal Kishore -- 2020
+# Git Helper
+
 function Status(){
     git status
 }
