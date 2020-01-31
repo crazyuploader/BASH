@@ -4,3 +4,6 @@
 
 <b>[`git.sh`](git.sh)</b>
 * Git Helper.
+
+<b>[`kernel.sh`](kernel.sh)</b>
+* Kernel Builder Helper.
