@@ -19,6 +19,8 @@ export KBUILD_BUILD_USER=crazyuploader
 export KBUILD_BUILD_HOST=github
 export KBUILD_JOBS="$(($(grep -c '^processor' /proc/cpuinfo) * 2))"
 export ZIPNAME="KUNNEL.zip"
+export KBUILD_COMPILER_STRING="Clang Version 9.0.3"
+export ARCH=arm64 && export SUBARCH=arm64
 
 # Main Script
 echo -e "${GREEN}" "###################################"
