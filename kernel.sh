@@ -17,7 +17,7 @@ clear
 # Export Few Stuff
 export KBUILD_BUILD_USER=crazyuploader
 export KBUILD_BUILD_HOST=github
-export KBUILD_JOBS="$((`grep -c '^processor' /proc/cpuinfo` * 2))"
+export KBUILD_JOBS="$(($(grep -c '^processor' /proc/cpuinfo) * 2))"
 export ZIPNAME="KUNNEL.zip"
 
 # Main Script
