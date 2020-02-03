@@ -14,6 +14,12 @@ echo "Done!"
 sleep 1.5
 clear
 
+# Export Few Stuff
+export KBUILD_BUILD_USER=crazyuploader
+export KBUILD_BUILD_HOST=github
+export KBUILD_JOBS="$((`grep -c '^processor' /proc/cpuinfo` * 2))"
+export ZIPNAME="KUNNEL.zip"
+
 # Main Script
 echo -e "${GREEN}" "###################################"
 echo -e "${GREEN}" "###### KERNEL BUILDER HELPER ######"
@@ -37,7 +43,7 @@ if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     cd anykernel || exit
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
-    echo -e "${GREEN}" "Build Finished in $DIFF"
+    echo -e "${GREEN}" "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
 else
     echo ""
     echo -e "${RED}" "Build Finished with errors!"
