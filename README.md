@@ -13,3 +13,6 @@
 
 <b>[`build_py.sh`](build_py.sh)</b>
 * Python Program Build Helper Script.
+
+<b>[`check_sh.sh`](check_sh.sh)</b>
+* Script to check all `'.sh'` files in the current directory using 'shellcheck'.
