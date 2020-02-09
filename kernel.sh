@@ -45,9 +45,9 @@ if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     cd anykernel || exit
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
-    echo -e "${GREEN}" "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
+    echo -e "${GREEN}" "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
 else
     echo ""
-    echo -e "${RED}" "Build Finished with errors!"
+    echo -e "${RED}" "Build Finished with errors!${NC}"
     exit 1
 fi
