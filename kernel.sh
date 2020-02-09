@@ -33,6 +33,7 @@ ls arch/arm64/configs/*whyred*
 echo ""
 echo "Enter Def_Config: "
 read -r DEFCONFIG
+echo -e "${YELLOW}" "Entered Def_Config: ${DEFCONFIG}${NC}"
 TOOLCHAIN=$(cd ../toolchains/ && pwd)
 echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
