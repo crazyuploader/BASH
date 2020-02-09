@@ -6,4 +6,10 @@
 * Git Helper.
 
 <b>[`kernel.sh`](kernel.sh)</b>
-* Kernel Builder Helper.
+* Kernel Builder Helper Script.
+
+<b>[`build_cpp.sh`](build_cpp.sh)</b>
+* C++ Program Build Helper Script.
+
+<b>[`build_py.sh`](build_py.sh)</b>
+* Python Program Build Helper Script.
