@@ -1,4 +1,4 @@
 dist: bionic
 language: bash
 script:
-    - shellcheck *.sh
+    - echo "Running 'check_sh.sh' Script" && bash check_sh.sh
