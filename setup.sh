@@ -14,6 +14,7 @@ BASH="https://github.com/crazyuploader/Bash.git"
 PYTHON="https://github.com/crazyuploader/Python.git"
 CPP="https://github.com/crazyuploader/CPP.git"
 C="https://github.com/crazyuploader/C.git"
+COLLEGESTUFF="https://github.com/crazyuploader/CollgeStuff.git"
 
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
@@ -57,7 +58,7 @@ function CLONE() {
 
 START=$(date +"%s")  # Start Time Reference
 clear
-GIT="$(which git)"
+GIT="$(command -v git)"
 if [[ -z ${GIT} ]]; then  # Checking if git is installed or not, if it is not, ask to install or not.
     echo -e "${YELLOW}'git' not installed.${NC}"
     NEWLINE
@@ -114,6 +115,10 @@ sleep 1
 clear
 echo -e "Bash at:${GREEN} ${BASH}${NC}\n"
 CLONE "$BASH" bash
+sleep 1
+clear
+echo -e "CollegeStuff at:${GREEN} ${COLLEGESTUFF}${NC}\n"
+CLONE "$COLLEGESTUFF" collegestuff
 sleep 1
 clear
 END=$(date +"%s")  #Stop Time Reference
