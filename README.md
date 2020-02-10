@@ -16,3 +16,6 @@
 
 <b>[`check_sh.sh`](check_sh.sh)</b>
 * Script to check all `'.sh'` files in the current directory using 'shellcheck'.
+
+<b>[`setup.sh`](setup.sh)</b>
+* Just a script to help me set thing(s) up after new installation of an OS.
