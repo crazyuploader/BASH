@@ -14,7 +14,7 @@ BASH="https://github.com/crazyuploader/Bash.git"
 PYTHON="https://github.com/crazyuploader/Python.git"
 CPP="https://github.com/crazyuploader/CPP.git"
 C="https://github.com/crazyuploader/C.git"
-COLLEGESTUFF="https://github.com/crazyuploader/CollgeStuff.git"
+COLLEGESTUFF="https://github.com/crazyuploader/CollegeStuff.git"
 
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
