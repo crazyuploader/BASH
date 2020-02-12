@@ -9,4 +9,4 @@ echo ""
 echo -e "${GREEN}" "Checking all the files with Shellcheck ${NC}"
 for f in *.sh; do echo ""; echo "Checking '$f'"; shellcheck "$f"; done
 echo ""
-echo -e "${YELLOW}" "Done! ${NC}"
+echo -e "${YELLOW}Done!${NC}"
