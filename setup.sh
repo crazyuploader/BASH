@@ -87,6 +87,7 @@ clear
 echo "Setup Main Script"
 NEWLINE
 echo -e "Your OS:" "${GREEN}" "$(lsb_release -d | cut -d ':' -f 2 | sed -e 's/^[[:space:]]*//')${NC}"
+echo -e "Your Bash: ${GREEN}${BASH_VERSION}${NC}"
 sleep 3
 CD ~
 clear
