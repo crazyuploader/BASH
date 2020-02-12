@@ -15,6 +15,7 @@ PYTHON="https://github.com/crazyuploader/Python.git"
 CPP="https://github.com/crazyuploader/CPP.git"
 C="https://github.com/crazyuploader/C.git"
 COLLEGESTUFF="https://github.com/crazyuploader/CollegeStuff.git"
+DATA="https://github.com/crazyuploader/Data.git"
 
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
@@ -122,6 +123,16 @@ echo -e "CollegeStuff at:${GREEN} ${COLLEGESTUFF}${NC}\n"
 CLONE "$COLLEGESTUFF" collegestuff
 sleep 1
 clear
+echo -e "Data at: ${GREEN} ${DATA}${NC}\n"
+CLONE "$DATA" data
+sleep 1
+clear
+echo "Getting Update Helper in current directory"
+curl -O https://raw.githubusercontent.com/crazyuploader/Bash/master/update.sh
+sleep 3
+clear
 END=$(date +"%s")  #Stop Time Reference
 DIFF=$((END - START))  # Difference between 'start' and 'stop' time Reference
 echo -e "Script ended in: ${YELLOW}$((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
+NEWLINE
+echo "Created by: ${GREEN}Jugal Kishore${NC}"
