@@ -14,6 +14,7 @@ echo ""
 cd bash && git fetch origin master && git pull origin master && cd ..
 echo ""
 cd data && git fetch origin master && git pull origin master && cd ..
+echo ""
 echo "Done!"
 sleep 5
 clear
