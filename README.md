@@ -19,3 +19,6 @@
 
 <b>[`setup.sh`](setup.sh)</b>
 * Just a script to help me set thing(s) up after new installation of an OS.
+
+<b>[`update.sh`](update.sh)</b>
+* Script to update my GitHub frequently used repositories.
