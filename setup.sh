@@ -142,13 +142,13 @@ if [[ -z ${GIT_NAME} ]] && [[ -z ${GIT_EMAIL} ]]; then
         read -r G_NAME
         git config --global user.name "${G_NAME}"
         NEWLINE
-        echo "Git Name set to: ${GREEN}${G_NAME}${NC}"
+        echo -e "Git Name set to: ${GREEN}${G_NAME}${NC}"
         clear
         echo "Enter Your Email: "
         read -r G_EMAIL
         git config --global user.email "${G_EMAIL}"
         NEWLINE
-        echo "Git Email set to: ${GREEN}${G_EMAIL}${NC}"
+        echo -e "Git Email set to: ${GREEN}${G_EMAIL}${NC}"
         clear
         git config --global credential.helper "cache --timeout=7200"
         echo "${GREEN}Git Credentials Saved.${NC}"
@@ -160,4 +160,4 @@ END=$(date +"%s")  #Stop Time Reference
 DIFF=$((END - START))  # Difference between 'start' and 'stop' time Reference
 echo -e "Script ended in: ${YELLOW}$((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
 NEWLINE
-echo "Created by: ${GREEN}Jugal Kishore${NC}"
+echo -e "Created by: ${GREEN}Jugal Kishore${NC}"
