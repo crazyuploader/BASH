@@ -128,7 +128,32 @@ CLONE "$DATA" data
 sleep 1
 clear
 echo "Getting Update Helper in current directory"
-curl -O https://raw.githubusercontent.com/crazyuploader/Bash/master/update.sh
+curl -O https://raw.githubusercontent.com/crazyuploader/Bash/master/update.sh && chmod +x update.sh
+GIT_NAME=$(git config user.name)
+GIT_EMAIL=$(git config user.email)
+if [[ -z ${GIT_NAME} ]] && [[ -z ${GIT_EMAIL} ]]; then
+    echo "Your Git Credentials seems to be empty, wanna add?"
+    NEWLINE
+    echo "'y' for yes, anything else for no"
+    echo "Choice?"
+    read -r TEMP
+    if [[ $TEMP = "y" ]]; then
+        echo "Enter Your Name: "
+        read -r G_NAME
+        git config --global user.name "${G_NAME}"
+        NEWLINE
+        echo "Git Name set to: ${GREEN}${G_NAME}${NC}"
+        clear
+        echo "Enter Your Email: "
+        read -r G_EMAIL
+        git config --global user.email "${G_EMAIL}"
+        NEWLINE
+        echo "Git Email set to: ${GREEN}${G_EMAIL}${NC}"
+        clear
+        git config --global credential.helper "cache --timeout=7200"
+        echo "${GREEN}Git Credentials Saved.${NC}"
+    fi
+fi
 sleep 3
 clear
 END=$(date +"%s")  #Stop Time Reference
