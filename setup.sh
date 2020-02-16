@@ -133,6 +133,7 @@ sleep 1
 clear
 echo "Getting Update Helper in current directory"
 curl -O https://raw.githubusercontent.com/crazyuploader/Bash/master/update.sh && chmod +x update.sh
+clear
 GIT_NAME=$(git config user.name)
 GIT_EMAIL=$(git config user.email)
 if [[ -z ${GIT_NAME} ]] && [[ -z ${GIT_EMAIL} ]]; then
@@ -171,7 +172,7 @@ if [[ -z ${GIT_NAME} ]] && [[ -z ${GIT_EMAIL} ]]; then
         fi
         clear
         git config --global credential.helper "cache --timeout=7200"
-        echo "${GREEN}Git Identity Saved.${NC}"
+        echo -e "${GREEN}Git Identity Saved.${NC}"
     fi
 fi
 sleep 3
