@@ -8,7 +8,6 @@ YELLOW='\033[1;33m'
 
 # Clean up
 echo "Cleaning Old Kernel Files"
-rm "$(pwd)/anykernel/Image.gz-dtb" "$(pwd)/anykernel/*.zip"
 rm -r "$(pwd)/out"
 echo "Done!"
 sleep 1.5
@@ -35,7 +34,13 @@ ls arch/arm64/configs/*whyred*
 echo ""
 echo "Enter Def_Config: "
 read -r DEFCONFIG
-echo -e "${YELLOW}Entered Def_Config: ${DEFCONFIG}${NC}"
+echo ""
+if [[ -f "arch/arm64/configs/${DEFCONFIG}" ]]; then
+    echo -e "Entered Def_Config: ${GREEN}${DEFCONFIG}${NC}"
+else
+    echo -e "Entered Def_Config: ${RED}${DEFCONFIG} Does not exist.${NC}"
+    exit 1
+fi
 TOOLCHAIN=$(cd ../toolchains/ && pwd)
 ANYKERNEL=$(cd ../anykernel/ && pwd)
 echo ""
@@ -55,3 +60,4 @@ else
     echo -e "${RED}Build Finished with errors!${NC}"
     exit 1
 fi
+rm -rf "$(pwd)/out"
