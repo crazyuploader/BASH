@@ -23,18 +23,21 @@ export KBUILD_COMPILER_STRING="Clang Version 9.0.3"
 export ARCH=arm64 && export SUBARCH=arm64
 
 # Main Script
-echo -e "${GREEN}" "###################################"
-echo -e "${GREEN}" "###### KERNEL BUILDER HELPER ######"
-echo -e "${GREEN}" "###################################${NC}"
+echo -e "${GREEN}###################################"
+echo -e "${GREEN}###### KERNEL BUILDER HELPER ######"
+echo -e "${GREEN}###################################${NC}"
 echo ""
-echo -e "${YELLOW}" "Available Def_Configs - ${NC}"
+echo -e "Kernel Version: ${GREEN}$(make kernelversion)${NC}"
+echo ""
+echo -e "${YELLOW}Available Def_Configs - ${NC}"
 echo ""
 ls arch/arm64/configs/*whyred*
 echo ""
 echo "Enter Def_Config: "
 read -r DEFCONFIG
-echo -e "${YELLOW}" "Entered Def_Config: ${DEFCONFIG}${NC}"
+echo -e "${YELLOW}Entered Def_Config: ${DEFCONFIG}${NC}"
 TOOLCHAIN=$(cd ../toolchains/ && pwd)
+ANYKERNEL=$(cd ../anykernel/ && pwd)
 echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
 START=$(date +"%s")
@@ -42,13 +45,13 @@ make -j"$(nproc --all)" O=out ARCH=arm64 CC="${TOOLCHAIN}/clang/clang-r353983c/b
 END=$(date +"%s")
 DIFF=$((END - START))
 if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
-    cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "$(pwd)/anykernel"
-    cd anykernel || exit
+    cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL}"
+    cd "${ANYKERNEL}" || exit
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
-    echo -e "${GREEN}" "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
+    echo -e "${GREEN}Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
 else
     echo ""
-    echo -e "${RED}" "Build Finished with errors!${NC}"
+    echo -e "${RED}Build Finished with errors!${NC}"
     exit 1
 fi
