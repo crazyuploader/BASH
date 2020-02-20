@@ -56,6 +56,7 @@ DIFF=$((END - START))
 if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL}"
     cd "${ANYKERNEL}" || exit
+    rm -r ./*.zip
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
     echo -e "${GREEN}Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
