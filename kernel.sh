@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+TOOLCHAIN=$(cd ../toolchains/ && pwd)
+ANYKERNEL=$(cd ../anykernel/ && pwd)
+PWD="$(pwd)"
+NAME="$(basename "${PWD}")"
+
+# Export Few Stuff
+export KBUILD_BUILD_USER="crazyuploader"
+export KBUILD_BUILD_HOST="github.com"
+export KBUILD_JOBS="$(($(grep -c '^processor' /proc/cpuinfo) * 2))"
+export ZIPNAME="${NAME}_KUNNEL.zip"
+export KBUILD_COMPILER_STRING="Clang Version 9.0.3"
+export ARCH="arm64"
+export SUBARCH="arm64"
+
 # Colors
 NC='\033[0m'
 RED='\033[0;31m'
@@ -9,21 +23,10 @@ YELLOW='\033[1;33m'
 # Clean up
 echo "Cleaning Old Kernel Files"
 rm -r "$(pwd)/out"
+rm "${ANYKERNEL}/Image.gz-dtb"
 echo "Done!"
 sleep 1.5
 clear
-
-PWD="$(pwd)"
-NAME="$(basename "${PWD}")"
-
-# Export Few Stuff
-export KBUILD_BUILD_USER=crazyuploader
-export KBUILD_BUILD_HOST=github
-export KBUILD_JOBS="$(($(grep -c '^processor' /proc/cpuinfo) * 2))"
-export ZIPNAME="${NAME}_KUNNEL.zip"
-export KBUILD_COMPILER_STRING="Clang Version 9.0.3"
-export ARCH=arm64
-export SUBARCH=arm64
 
 # Main Script
 echo -e "${GREEN}###################################"
@@ -45,8 +48,6 @@ else
     echo -e "Entered Def_Config: ${RED}${DEFCONFIG} Does not exist.${NC}"
     exit 1
 fi
-TOOLCHAIN=$(cd ../toolchains/ && pwd)
-ANYKERNEL=$(cd ../anykernel/ && pwd)
 echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
 START=$(date +"%s")
