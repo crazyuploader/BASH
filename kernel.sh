@@ -4,6 +4,7 @@ TOOLCHAIN=$(cd ../toolchains/ && pwd)
 ANYKERNEL=$(cd ../anykernel/ && pwd)
 PWD="$(pwd)"
 NAME="$(basename "${PWD}")"
+KERNEL_VERSION="$(make kernelversion)"
 
 # Export Few Stuff
 export KBUILD_BUILD_USER="crazyuploader"
@@ -49,6 +50,8 @@ else
     exit 1
 fi
 echo ""
+echo -e "Building ${NAME} at Version: ${GREEN}${KERNEL_VERSION}${NC}"
+echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
 START=$(date +"%s")
 make -j"$(nproc --all)" O=out ARCH=arm64 CC="${TOOLCHAIN}/clang/clang-r353983c/bin/clang" CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
@@ -61,9 +64,13 @@ if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
     echo -e "${GREEN}Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
+    echo ""
+    echo "Flashable Zip in: ${ANYKERNEL}"
+    echo "MD5: $(md5sum "${ZIPNAME}")"
 else
     echo ""
-    echo -e "${RED}Build Finished with errors!${NC}"
+    echo -e "${RED}Build Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
     exit 1
 fi
-rm -rf "$(pwd)/out"
+cd "${PWD}" || exit
+rm -rf out/
