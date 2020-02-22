@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-TOOLCHAIN=$(cd ../toolchains/ && pwd)
-ANYKERNEL=$(cd ../anykernel/ && pwd)
+TOOLCHAIN="$(cd ../toolchains/ && pwd)"
+ANYKERNEL="$(cd ../anykernel/ && pwd)"
 PWD="$(pwd)"
 NAME="$(basename "${PWD}")"
 KERNEL_VERSION="$(make kernelversion)"
+TIME="$(date +%d%m%y%H%M)"
 
 # Export Few Stuff
 export KBUILD_BUILD_USER="crazyuploader"
 export KBUILD_BUILD_HOST="github.com"
-export KBUILD_JOBS="$(($(grep -c '^processor' /proc/cpuinfo) * 2))"
-export ZIPNAME="${NAME}_KUNNEL.zip"
+export ZIPNAME="${NAME}-${TIME}.zip"
 export KBUILD_COMPILER_STRING="Clang Version 9.0.3"
 export ARCH="arm64"
 export SUBARCH="arm64"
@@ -67,10 +67,10 @@ if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     echo ""
     echo "Flashable Zip in: ${ANYKERNEL}"
     echo "MD5: $(md5sum "${ZIPNAME}")"
+    rm -rf "${PWD}/out/"
 else
     echo ""
     echo -e "${RED}Build Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
+    rm -rf "${PWD}/out/"
     exit 1
 fi
-cd "${PWD}" || exit
-rm -rf out/
