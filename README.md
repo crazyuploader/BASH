@@ -22,3 +22,6 @@
 
 <b>[`update.sh`](update.sh)</b>
 * Script to update my GitHub frequently used repositories.
+
+<b>[`kbuild.sh`](kbuild.sh)</b>
+* Automated Kernel Script.
