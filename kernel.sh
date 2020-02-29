@@ -71,7 +71,7 @@ DIFF=$((END - START))
 if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL}"
     cd "${ANYKERNEL}" || exit
-    mv *.zip ../Builds
+    mv ./*.zip ../Builds
     rm -r ./*.zip
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
