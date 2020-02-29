@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 
+# Created by Jugal Kishore -- 2020
+# Kernel Helper Script
+
+# Variables
 TOOLCHAIN="$(cd ../toolchains/ && pwd)"
 ANYKERNEL="$(cd ../anykernel/ && pwd)"
 PWD="$(pwd)"
 NAME="$(basename "${PWD}")"
 KERNEL_VERSION="$(make kernelversion)"
 TIME="$(date +%d%m%y%H%M)"
+CLANG_VERSION="$(cd ../toolchains/clang/clang-r377782b/bin/ && ./clang --version | grep 'clang version' | cut -c 37-)"
 
 # Export Few Stuff
 export KBUILD_BUILD_USER="crazyuploader"
 export KBUILD_BUILD_HOST="github.com"
 export ZIPNAME="${NAME}-${TIME}.zip"
-export KBUILD_COMPILER_STRING="Clang Version 9.0.3"
+export KBUILD_COMPILER_STRING="${CLANG_VERSION}"
 export ARCH="arm64"
 export SUBARCH="arm64"
 
@@ -50,16 +55,23 @@ else
     exit 1
 fi
 echo ""
+echo -e "Clang Version: ${GREEN}${CLANG_VERSION}${NC}"
+echo ""
 echo -e "Building ${NAME} at Version: ${GREEN}${KERNEL_VERSION}${NC}"
 echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
+
+# Compilation
 START=$(date +"%s")
-make -j"$(nproc --all)" O=out ARCH=arm64 CC="${TOOLCHAIN}/clang/clang-r353983c/bin/clang" CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
+make -j"$(nproc --all)" O=out ARCH=arm64 CC="${TOOLCHAIN}/clang/clang-r377782b/bin/clang" CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
 END=$(date +"%s")
 DIFF=$((END - START))
+
+# Zipping
 if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL}"
     cd "${ANYKERNEL}" || exit
+    mv *.zip ../Builds
     rm -r ./*.zip
     zip -r9 "${ZIPNAME}" ./*
     ls -lh
