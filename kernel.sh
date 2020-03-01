@@ -64,6 +64,8 @@ make O=out ARCH=arm64 "$DEFCONFIG"
 # Compilation
 START=$(date +"%s")
 make -j"$(nproc --all)" O=out ARCH=arm64 CC="${TOOLCHAIN}/clang/clang-r377782b/bin/clang" CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
+
+# Time Difference
 END=$(date +"%s")
 DIFF=$((END - START))
 
@@ -79,9 +81,11 @@ if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
     echo "Flashable Zip in: ${ANYKERNEL}"
     echo "MD5: $(md5sum "${ZIPNAME}")"
     rm -rf "${PWD}/out/"
+    spd-say "Build Finished"
 else
     echo ""
     echo -e "${RED}Build Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
     rm -rf "${PWD}/out/"
+    spd-say "Build Failed with errors."
     exit 1
 fi
