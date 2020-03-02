@@ -20,6 +20,7 @@ CPP="https://github.com/crazyuploader/CPP.git"
 C="https://github.com/crazyuploader/C.git"
 COLLEGESTUFF="https://github.com/crazyuploader/CollegeStuff.git"
 DATA="https://github.com/crazyuploader/Data.git"
+DOCKER="https://github.com/crazyuploader/Docker-Builder.git"
 
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
@@ -129,6 +130,9 @@ sleep 1
 clear
 echo -e "Data at: ${GREEN} ${DATA}${NC}\n"
 CLONE "$DATA" data
+sleep 1
+echo -e "Docker at: ${GREEN} ${DOCKER}${NC}"
+CLONE "$DOCKER" docker
 sleep 1
 clear
 echo "Getting Update Helper in current directory"
