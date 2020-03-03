@@ -62,17 +62,27 @@ echo -e "Clang Version: ${GREEN}${CLANG_VERSION}${NC}"
 echo ""
 echo "Enter Number of Cores:"
 read -r CORES
-if [[ ${CORES} > ${NO_OF_CORES} ]]; then
+if [[ ${CORES} -gt "${NO_OF_CORES}" ]]; then
     echo ""
-    echo -e "Aho Ka! ${RED}Check the cores and try again${NC}"
+    echo -e "Aho Ka! ${YELLOW}Check the cores and try again${NC}"
     echo ""
     echo "Enter Number of Cores:"
     read -r CORES
+else
+    if [[ ${CORES} -lt "1" ]]; then
+        echo ""
+        echo -e "Aho Ka! Minimum Core required is ${YELLOW}1 (one)${NC}"
+        echo ""
+        echo "Enter Number of Cores:"
+        read -r CORES
+    fi
 fi
 echo ""
 echo -e "Entered Number of Cores: ${GREEN}${CORES}${NC}"
 echo ""
-echo -e "Building ${NAME} at Version: ${GREEN}${KERNEL_VERSION}${NC}"
+echo -e "Build Start Time: ${GREEN}$(date +"%T")${NC}"
+echo ""
+echo -e "${NAME} at Version: ${GREEN}${KERNEL_VERSION}${NC}"
 echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
 
