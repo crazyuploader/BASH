@@ -54,7 +54,10 @@ export SUBARCH="arm64"
 
 # Telegram Message
 echo ""
-curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage -d text="CI Build -- ${NAME} at Version: ${KERNEL_VERSION}" -d chat_id="${KERNEL_CHAT_ID}" -d parse_mode=HTML
+curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
+        -d text="CI Build -- ${NAME} at Version: ${KERNEL_VERSION}"         \
+        -d chat_id="${KERNEL_CHAT_ID}"                                       \
+        -d parse_mode=HTML
 START="$(date +"%s")"
 echo ""
 echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLANG_VERSION}"
@@ -62,7 +65,11 @@ echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLAN
 # Compilation
 echo ""
 make O=out ARCH=arm64 "${DEF_CONFIG}"
-make -j"$(nproc --all)" O=out ARCH=arm64 CC="${CC}" CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="${GCC_DIR}" CROSS_COMPILE_ARM32="${GCC32_DIR}"
+make -j"$(nproc --all)"                                                     \
+        O=out ARCH=arm64                                                     \
+        CC="${CC}" CLANG_TRIPLE="aarch64-linux-gnu-"                          \
+        CROSS_COMPILE="${GCC_DIR}"                                             \
+        CROSS_COMPILE_ARM32="${GCC32_DIR}"
 
 # Time Difference
 END="$(date +"%s")"
@@ -76,9 +83,14 @@ if [ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]
   	cd "${ANYKERNEL_DIR}" || exit
   	zip -r9 "${ZIPNAME}" ./*
   	echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
-	curl -F chat_id="${KERNEL_CHAT_ID}" -F document=@"$(pwd)/${ZIPNAME}" https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
+	curl -F chat_id="${KERNEL_CHAT_ID}" \
+         -F document=@"$(pwd)/${ZIPNAME}" \
+         https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
 else
-  	curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage -d text="${NAME} Build finished with errors..." -d chat_id="${KERNEL_CHAT_ID}" -d parse_mode=HTML
+  	curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
+            -d text="${NAME} Build finished with errors..."                     \
+            -d chat_id="${KERNEL_CHAT_ID}"                                       \
+            -d parse_mode=HTML
     echo "Built with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
     exit 1
 fi

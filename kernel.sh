@@ -8,6 +8,7 @@ TOOLCHAIN="$(cd ../toolchains/ && pwd)"
 ANYKERNEL="$(cd ../anykernel/ && pwd)"
 PWD="$(pwd)"
 NAME="$(basename "${PWD}")"
+NO_OF_CORES="$(nproc --all)"
 KERNEL_VERSION="$(make kernelversion)"
 TIME="$(date +%d%m%y%H%M)"
 CLANG_VERSION="$(cd ../toolchains/clang/clang-r377782b/bin/ && ./clang --version | grep 'clang version' | cut -c 37-)"
@@ -39,7 +40,9 @@ echo -e "${GREEN}###################################"
 echo -e "${GREEN}###### KERNEL BUILDER HELPER ######"
 echo -e "${GREEN}###################################${NC}"
 echo ""
-echo -e "Kernel Version: ${GREEN}$(make kernelversion)${NC}"
+echo -e "Kernel Version: ${GREEN}$(make kernelversion)${NC}     \
+Available Cores: ${GREEN}${NO_OF_CORES}${NC}     \
+Current Branch: ${GREEN}$(git rev-parse --abbrev-ref HEAD)${NC}"
 echo ""
 echo -e "${YELLOW}Available Def_Configs - ${NC}"
 echo ""
@@ -57,13 +60,31 @@ fi
 echo ""
 echo -e "Clang Version: ${GREEN}${CLANG_VERSION}${NC}"
 echo ""
+echo "Enter Number of Cores:"
+read -r CORES
+if [[ ${CORES} > ${NO_OF_CORES} ]]; then
+    echo ""
+    echo -e "Aho Ka! ${RED}Check the cores and try again${NC}"
+    echo ""
+    echo "Enter Number of Cores:"
+    read -r CORES
+fi
+echo ""
+echo -e "Entered Number of Cores: ${GREEN}${CORES}${NC}"
+echo ""
 echo -e "Building ${NAME} at Version: ${GREEN}${KERNEL_VERSION}${NC}"
 echo ""
 make O=out ARCH=arm64 "$DEFCONFIG"
 
 # Compilation
 START=$(date +"%s")
-make -j"$(nproc --all)" O=out ARCH=arm64 CC="${TOOLCHAIN}/clang/clang-r377782b/bin/clang" CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
+make -j"${CORES}"                                                        \
+        O=out                                                             \
+        ARCH=arm64                                                         \
+        CC="${TOOLCHAIN}/clang/clang-r377782b/bin/clang"                    \
+        CLANG_TRIPLE="aarch64-linux-gnu-"                                    \
+        CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-"           \
+        CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
 
 # Time Difference
 END=$(date +"%s")
