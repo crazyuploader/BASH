@@ -13,7 +13,8 @@ clear
 echo -e "${YELLOW}Please wait, updating your repositories from GitHub${NC}"
 echo ""
 for f in */; do
-    if [[ ${f} != "and/" ]]; then
+    f="$(echo "$f" | cut -d "/" -f 1)"
+    if [[ ${f} != "and" ]]; then
         echo -e "Updating ${GREEN}${f}${NC}"
         cd "$f" || { echo -e "Error while changing directory to ${RED}${f}${NC}"; exit 1; }
         git pull
