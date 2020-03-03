@@ -14,9 +14,11 @@ echo -e "${YELLOW}Please wait, updating your repositories from GitHub${NC}"
 echo ""
 for f in */; do
     f="$(echo "$f" | cut -d "/" -f 1)"
-    if [[ ${f} != "and" ]]; then
-        echo -e "Updating ${GREEN}${f}${NC}"
+    if [[ ${f} != "and" && ${f} != "temp" ]]; then
+        echo -e "Updating Repository ---> ${GREEN}'${f}'${NC}"
         cd "$f" || { echo -e "Error while changing directory to ${RED}${f}${NC}"; exit 1; }
+        echo -e "Current Branch: ${GREEN}$(git rev-parse --abbrev-ref HEAD)${NC} at ${YELLOW}$(git config --get remote.origin.url)${NC}"
+        echo ""
         git pull
         echo ""
         cd ..
