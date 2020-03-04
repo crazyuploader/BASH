@@ -32,7 +32,7 @@ echo "Cleaning Old Kernel Files"
 rm -r "$(pwd)/out"
 rm "${ANYKERNEL}/Image.gz-dtb"
 echo "Done!"
-sleep 1.5
+sleep 0.2
 clear
 
 # Main Script
@@ -60,21 +60,16 @@ fi
 echo ""
 echo -e "Clang Version: ${GREEN}${CLANG_VERSION}${NC}"
 echo ""
-echo "Enter Number of Cores:"
+echo "Enter Number of Parallel Jobs:"
 read -r CORES
 if [[ ${CORES} -gt "${NO_OF_CORES}" ]]; then
     echo ""
-    echo -e "Aho Ka! ${YELLOW}Check the cores and try again${NC}"
-    echo ""
-    echo "Enter Number of Cores:"
-    read -r CORES
+    echo -e "Aho Ka! ${YELLOW}Using all ${NO_OF_CORES} cores${NC}"
+    CORES="${NO_OF_CORES}"
 else
-    if [[ ${CORES} -lt "1" ]]; then
-        echo ""
-        echo -e "Aho Ka! Minimum Core required is ${YELLOW}1 (one)${NC}"
-        echo ""
-        echo "Enter Number of Cores:"
-        read -r CORES
+    if [[ -z "${CORES}" || ${CORES} -lt "1" ]]; then
+        echo -e "Aho Ka! ${YELLOW}Using all ${NO_OF_CORES} cores${NC}"
+        CORES="${NO_OF_CORES}"
     fi
 fi
 echo ""
@@ -117,6 +112,9 @@ else
     echo ""
     echo -e "${RED}Build Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
     rm -rf "${PWD}/out/"
+    mplayer ~/beep.wav>> /dev/null 2>&1
+    sleep 0.5
     spd-say "Build Failed with errors."
+    mplayer ~/beep.wav>> /dev/null 2>&1
     exit 1
 fi
