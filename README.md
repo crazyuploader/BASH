@@ -15,7 +15,10 @@
 * Python Program Build Helper Script.
 
 <b>[`check_sh.sh`](check_sh.sh)</b>
-* Script to check all `'.sh'` files in the current directory using 'shellcheck'.
+* Script to check all the`'.sh'` files in the current directory using 'shellcheck'.
+
+<b>[`check_py.sh`](check_py)</b>
+* Script to lint all the `'.py'` files in the current directory using 'Pyflakes' and 'Flake8'.
 
 <b>[`setup.sh`](setup.sh)</b>
 * Just a script to help me set thing(s) up after new installation of an OS.
