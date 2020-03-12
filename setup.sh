@@ -55,10 +55,45 @@ function CLONE() {
         echo -e "${YELLOW}'${2}' directory exists, pulling the latest changes instead.${NC}"
         CD "$2"
         NEWLINE
+        echo -e "${YELLOW}By Default Script will only pull from remote 'origin' & branch 'master'${NC}"
+        NEWLINE
         git pull
         NEWLINE
         echo "Done!"
         CD ..
+    fi
+}
+
+function KSETUP() {
+    clear
+    echo -e "${GREEN}Kernel Environment Setup${NC}"
+    NEWLINE
+    echo "Install Kernel Building Dependencies?"
+    echo "'y' for yes, and anything to exit"
+    read -r TEMP
+    if [[ "${TEMP}" = "y" ]]; then
+        sudo apt-get update
+        NEWLINE
+        sudo apt-get upgrade -y
+        NEWLINE
+        sudo apt-get install -y  \
+                             curl \
+                             git   \
+                             python \
+                             bc      \
+                             tar      \
+                             make      \
+                             wget       \
+                             gcc         \
+                             clang        \
+                             libssl-dev    \
+                             zip            \
+                             mplayer         \
+                             shellcheck
+
+    else
+        echo "Installing nothing, off you go!"
+        clear
     fi
 }
 
@@ -76,6 +111,7 @@ if [[ -z ${GIT} ]]; then  # Checking if git is installed or not, if it is not, a
         echo "Installing 'git'"
         NEWLINE
         sudo apt-get update
+        NEWLINE
         sudo apt-get install -y git
     else
         NEWLINE
@@ -88,7 +124,7 @@ if [[ -z ${GIT} ]]; then  # Checking if git is installed or not, if it is not, a
 else
     echo -e "${GREEN}'git' installed, good to go.${NC}"
 fi
-sleep 3
+sleep 1
 clear
 echo "Setup Main Script"
 NEWLINE
@@ -100,6 +136,7 @@ clear
 echo "Making Working Directory"
 NEWLINE
 MKD Desktop
+NEWLINE
 MKD work
 NEWLINE
 echo "Done!"
@@ -108,30 +145,38 @@ echo -e "${YELLOW}Getting GitHub Repositories${NC}"
 NEWLINE
 sleep 1
 clear
-echo -e "Python at:${GREEN} ${PYTHON}${NC}\n"
+echo -e "Python at:${GREEN} ${PYTHON}${NC}"
+NEWLINE
 CLONE "$PYTHON" python
 sleep 1
 clear
-echo -e "CPP at:${GREEN} ${CPP}${NC}\n"
+echo -e "CPP at:${GREEN} ${CPP}${NC}"
+NEWLINE
 CLONE "$CPP" cpp
 sleep 1
 clear
-echo -e "C at:${GREEN} ${C}${NC}\n"
+echo -e "C at:${GREEN} ${C}${NC}"
+NEWLINE
 CLONE "$C" c
 sleep 1
 clear
-echo -e "Bash at:${GREEN} ${BASH}${NC}\n"
+echo -e "Bash at:${GREEN} ${BASH}${NC}"
+NEWLINE
 CLONE "$BASH" bash
 sleep 1
 clear
-echo -e "CollegeStuff at:${GREEN} ${COLLEGESTUFF}${NC}\n"
+echo -e "CollegeStuff at:${GREEN} ${COLLEGESTUFF}${NC}"
+NEWLINE
 CLONE "$COLLEGESTUFF" collegestuff
 sleep 1
 clear
-echo -e "Data at: ${GREEN} ${DATA}${NC}\n"
+echo -e "Data at: ${GREEN} ${DATA}${NC}"
+NEWLINE
 CLONE "$DATA" data
 sleep 1
+clear
 echo -e "Docker at: ${GREEN} ${DOCKER}${NC}"
+NEWLINE
 CLONE "$DOCKER" docker
 sleep 1
 clear
@@ -179,8 +224,14 @@ if [[ -z ${GIT_NAME} ]] && [[ -z ${GIT_EMAIL} ]]; then
         echo -e "${GREEN}Git Identity Saved.${NC}"
     fi
 fi
-sleep 3
-clear
+echo -e "Git Identity -"
+NEWLINE
+echo -e "${GREEN}Saved Git Email:${NC} $(git config user.email)"
+NEWLINE
+echo -e "${GREEN}Saved Git Name:${NC} $(git config user.name)"
+NEWLINE
+sleep 2
+KSETUP
 END=$(date +"%s")  #Stop Time Reference
 DIFF=$((END - START))  # Difference between 'start' and 'stop' time Reference
 echo -e "Script ended in: ${YELLOW}$((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
