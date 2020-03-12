@@ -18,7 +18,7 @@
 * Script to check all the`'.sh'` files in the current directory using 'shellcheck'.
 
 <b>[`check_py.sh`](check_py)</b>
-* Script to lint all the `'.py'` files in the current directory using 'Pyflakes' and 'Flake8'.
+* Script to lint all the `'.py'` files in the current directory using 'pyflakes' and 'flake8'.
 
 <b>[`setup.sh`](setup.sh)</b>
 * Just a script to help me set thing(s) up after new installation of an OS.
