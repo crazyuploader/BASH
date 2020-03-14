@@ -11,7 +11,7 @@ NAME="$(basename "${PWD}")"
 NO_OF_CORES="$(nproc --all)"
 KERNEL_VERSION="$(make kernelversion)"
 TIME="$(date +%d%m%y%H%M)"
-CLANG_VERSION="$(cd ../toolchains/clang/clang-r377782c/bin/ && ./clang --version | grep 'clang version' | cut -c 37-)"
+CLANG_VERSION="$(cd ../toolchains/clang/bin/ && ./clang --version | grep 'clang version' | cut -c 37-)"
 
 # Export Few Stuff
 export KBUILD_BUILD_USER="crazyuploader"
