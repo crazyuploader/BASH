@@ -2,29 +2,29 @@
 
 [![Build Status](https://travis-ci.com/crazyuploader/Bash.svg?branch=master)](https://travis-ci.com/crazyuploader/Bash)
 
-<b>[`git.sh`](git.sh)</b>
+**[`git.sh`](git.sh)**
 * Git Helper.
 
-<b>[`kernel.sh`](kernel.sh)</b>
+**[`kernel.sh`](kernel.sh)**
 * Kernel Builder Helper Script.
 
-<b>[`build_cpp.sh`](build_cpp.sh)</b>
+**[`build_cpp.sh`](build_cpp.sh)**
 * C++ Program Build Helper Script.
 
-<b>[`build_py.sh`](build_py.sh)</b>
+**[`build_py.sh`](build_py.sh)**
 * Python Program Build Helper Script.
 
-<b>[`check_sh.sh`](check_sh.sh)</b>
+**[`check_sh.sh`](check_sh.sh)**
 * Script to check all the`'.sh'` files in the current directory using 'shellcheck'.
 
-<b>[`check_py.sh`](check_py)</b>
+**[`check_py.sh`](check_py)**
 * Script to lint all the `'.py'` files in the current directory using 'pyflakes' and 'flake8'.
 
-<b>[`setup.sh`](setup.sh)</b>
+**[`setup.sh`](setup.sh)**
 * Just a script to help me set thing(s) up after new installation of an OS.
 
-<b>[`update.sh`](update.sh)</b>
+**[`update.sh`](update.sh)**
 * Script to update my GitHub frequently used repositories.
 
-<b>[`kbuild.sh`](kbuild.sh)</b>
+**[`kbuild.sh`](kbuild.sh)**
 * Automated Kernel Script.
