@@ -5,7 +5,7 @@
 
 function SET_ENVIRONMENT() {
     cd "${TOOLCHAIN}" || { echo "Failure!"; exit 1; }
-    cd clang-r377782b || { echo "Failure!"; exit 1; }
+    cd clang || { echo "Failure!"; exit 1; }
     CLANG_DIR="$(pwd)"
     CC="${CLANG_DIR}/bin/clang"
     CLANG_VERSION="$(./bin/clang --version | grep 'clang version' | cut -c 37-)"
