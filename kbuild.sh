@@ -76,8 +76,9 @@ echo ""
 make O=out ARCH=arm64 "${DEF_CONFIG}"
 make -j"$(nproc --all)"                                                     \
         O=out ARCH=arm64                                                     \
-        CC="${CC}" CLANG_TRIPLE="aarch64-linux-gnu-"                          \
-        CROSS_COMPILE="${GCC_DIR}"                                             \
+        CC="${CC}"                                                            \
+        CLANG_TRIPLE="aarch64-linux-gnu-"                                      \
+        CROSS_COMPILE="${GCC_DIR}"                                              \
         CROSS_COMPILE_ARM32="${GCC32_DIR}"
 
 # Time Difference
