@@ -3,41 +3,45 @@
 # Created By Jugal Kishore -- 2020
 # Git Helper
 
-function Status(){
+function NEWLINE() {
+    echo ""
+}
+
+function Status() {
     git status
 }
 
-function Update(){
+function Update() {
     git fetch origin master
     git pull origin master
 }
 
-function Add(){
+function Add() {
     git add "$Name"
 }
 
-function Commit(){
+function Commit() {
     git commit -m "$Message"
 }
 
-function Add_Commit(){
+function Add_Commit() {
     git add "$Name"
     git commit -m "$Message"
 }
 
-function Push(){
+function Push() {
     git push origin master
 }
 
-function Remote_View(){
+function Remote_View() {
     git remote -v
 }
 
-function Remote_Add(){
+function Remote_Add() {
     git remote add "$RNAME" "$RURL"
 }
 
-function Remote_Remove(){
+function Remote_Remove() {
     git remote remove "$RNAME"
 }
 
@@ -45,9 +49,9 @@ while true
 do
     clear
     echo "Git Helper"
-    echo ""
+    NEWLINE
     echo "Options -"
-    echo ""
+    NEWLINE
     echo "1.  Git Status"
     echo "2.  Git Update (Fetch & Pull)"
     echo "3.  Git Add"
@@ -58,119 +62,119 @@ do
     echo "8.  Git Remote Add"
     echo "9.  Git Remote Remove"
     echo "10. Exit"
-    echo ""
+    NEWLINE
     echo "Your Choice?"
     read -r choice
     if [[ $choice == 1 ]]; then
         clear
         echo "Git Status"
-        echo ""
+        NEWLINE
         Status
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 2 ]]; then
         clear
         echo "Git Update"
-        echo ""
+        NEWLINE
         echo "Note: - It always pull from 'origin/master'"
-        echo ""
+        NEWLINE
         Update
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 3 ]]; then
         clear
         echo "Git Add"
-        echo ""
+        NEWLINE
         echo "Usage -"
-        echo ""
+        NEWLINE
         echo "All Files --> '.' (period)"
         echo "Single File --> 'File_Name'"
-        echo ""
+        NEWLINE
         echo "Changes:"
-        echo ""
+        NEWLINE
         git status -s
-        echo ""
+        NEWLINE
         echo "Your Choice?"
         read -r Name
         Add
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 4 ]]; then
         clear
         echo "Git Commit"
-        echo ""
+        NEWLINE
         echo "Enter Commit Message"
         read -r Message
         Commit
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 5 ]]; then
         clear
         echo "Git Add & Commit"
         echo "Usage for git add -"
-        echo ""
+        NEWLINE
         echo "All Files --> '.' (period)"
         echo "Single File --> 'File_Name'"
-        echo ""
+        NEWLINE
         echo "Your Choice?"
         read -r Name
         echo "Enter Commit Message"
         read -r Message
         Add_Commit
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 6 ]]; then
         clear
         echo "Git Push"
-        echo ""
+        NEWLINE
         Push
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 7 ]]; then
         clear
         echo "Git Remote View"
-        echo ""
+        NEWLINE
         Remote_View
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 8 ]]; then
         clear
         echo "Git Remote Add"
-        echo ""
+        NEWLINE
         echo -e "Enter Remote Name"
         read -r RNAME
-        echo ""
+        NEWLINE
         echo "Enter Remote URL for '${RNAME}'"
         read -r RURL
         Remote_Add
-        echo ""
+        NEWLINE
         echo "Remote '${RNAME}' of URL '${RURL}' added."
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 9 ]]; then
         clear
         echo "Git Remote Remove"
-        echo ""
+        NEWLINE
         echo "Available Remotes"
-        echo ""
+        NEWLINE
         Remote_View
-        echo ""
+        NEWLINE
         echo "Enter Remote Name to be Removed"
         read -r RNAME
-        echo ""
+        NEWLINE
         echo "Entered Remote to be Removed '${RNAME}'"
         Remote_Remove
-        echo ""
+        NEWLINE
         echo "Remote '${RNAME}' Removed."
-        echo ""
+        NEWLINE
         read -rp "Press enter to continue"
     fi
     if [[ $choice == 10 ]]; then
