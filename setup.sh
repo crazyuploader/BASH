@@ -76,19 +76,20 @@ function KSETUP() {
         NEWLINE
         sudo apt-get upgrade -y
         NEWLINE
-        sudo apt-get install -y  \
-                             curl \
-                             git   \
-                             python \
-                             bc      \
-                             tar      \
-                             make      \
-                             wget       \
-                             gcc         \
-                             clang        \
-                             libssl-dev    \
-                             zip            \
-                             mplayer         \
+        sudo apt-get install -y      \
+                             curl     \
+                             git       \
+                             python3    \
+                             python3-pip \
+                             bc           \
+                             tar           \
+                             make           \
+                             wget            \
+                             gcc              \
+                             clang             \
+                             libssl-dev         \
+                             zip                 \
+                             mplayer              \
                              shellcheck
 
     else
