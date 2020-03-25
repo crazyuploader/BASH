@@ -22,10 +22,10 @@ export ARCH="arm64"
 export SUBARCH="arm64"
 
 # Colors
-NC='\033[0m'
-RED='\033[0;31m'
-GREEN='\033[1;32m'
-YELLOW='\033[1;33m'
+NC="\033[0m"
+RED="\033[0;31m"
+GREEN="\033[1;32m"
+YELLOW="\033[1;33m"
 
 # Clean up
 echo "Cleaning Old Kernel Files"
