@@ -98,6 +98,15 @@ function KSETUP() {
     fi
 }
 
+function FUNCTIONS() {
+    clear
+    echo -e "${GREEN}Setting Bash Functions${NC}"
+    NEWLINE
+    echo -e "\n# Custom Functions\n\n" > ~/.bashrc
+    curl -s https://gist.githubusercontent.com/crazyuploader/a14458dae22e8135d73d4535154eb757/raw/e1fa532e61d311270b7f0f60da6aae1018bc4af7/bashrc >> ~/.bashrc
+    echo -e "${YELLOW}Done!${NC}"
+}
+
 START=$(date +"%s")  # Start Time Reference
 clear
 GIT="$(command -v git)"
@@ -233,6 +242,7 @@ echo -e "${GREEN}Saved Git Name:${NC} $(git config user.name)"
 NEWLINE
 sleep 2
 KSETUP
+FUNCTIONS
 END=$(date +"%s")  #Stop Time Reference
 DIFF=$((END - START))  # Difference between 'start' and 'stop' time Reference
 echo -e "Script ended in: ${YELLOW}$((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
