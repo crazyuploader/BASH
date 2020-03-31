@@ -5,6 +5,7 @@ GREEN="\033[1;32m"
 NC="\033[0m"
 YELLOW="\033[1;33m"
 
+clear
 echo -e "${YELLOW}Python Linter${NC}"
 echo ""
 echo -e "${GREEN}Checking all the files with Pyflakes ${NC}"
