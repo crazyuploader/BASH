@@ -102,8 +102,15 @@ function FUNCTIONS() {
     clear
     echo -e "${GREEN}Setting Bash Functions${NC}"
     NEWLINE
-    echo -e "\n# Custom Functions\n\n" > ~/.bashrc
-    curl -s https://gist.githubusercontent.com/crazyuploader/a14458dae22e8135d73d4535154eb757/raw/e1fa532e61d311270b7f0f60da6aae1018bc4af7/bashrc >> ~/.bashrc
+    if [[ -f "${HOME}/.bashrc" ]]; then
+        echo "'.bashrc' exists"
+    else
+        echo "'.bashrc' doesn't exist, creating it"
+        echo "# Script file executed whenever a user logs into bash" > ~/.bashrc
+    fi
+    echo -e "\n" >> ~/.bashrc
+    curl -s https://raw.githubusercontent.com/crazyuploader/Misc/master/functions >> ~/.bashrc
+    NEWLINE
     echo -e "${YELLOW}Done!${NC}"
 }
 
@@ -243,6 +250,8 @@ NEWLINE
 sleep 2
 KSETUP
 FUNCTIONS
+sleep 2
+NEWLINE
 END=$(date +"%s")  #Stop Time Reference
 DIFF=$((END - START))  # Difference between 'start' and 'stop' time Reference
 echo -e "Script ended in: ${YELLOW}$((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
