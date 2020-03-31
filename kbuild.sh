@@ -87,8 +87,7 @@ DIFF="$((END - START))"
 
 # Zipping
 echo ""
-if [ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]
-	then
+if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
   	cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL_DIR}"
   	cd "${ANYKERNEL_DIR}" || exit
   	zip -r9 "${ZIPNAME}" ./*
