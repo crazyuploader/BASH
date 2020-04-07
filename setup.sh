@@ -104,6 +104,7 @@ function FUNCTIONS() {
     NEWLINE
     if [[ -f "${HOME}/.bashrc" ]]; then
         echo "'.bashrc' exists"
+        sed -i '/#<>/,$d' ~/.bashrc
     else
         echo "'.bashrc' doesn't exist, creating it"
         echo "# Script file executed whenever a user logs into bash" > ~/.bashrc
