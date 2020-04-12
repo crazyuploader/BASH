@@ -69,7 +69,7 @@ function KSETUP() {
     echo -e "${GREEN}Kernel Environment Setup${NC}"
     NEWLINE
     echo "Install Kernel Building Dependencies?"
-    echo "'y' for yes, and anything to exit"
+    echo "'y' for yes, and anything for no"
     read -r TEMP
     if [[ "${TEMP}" = "y" ]]; then
         sudo apt-get update
@@ -112,7 +112,7 @@ function FUNCTIONS() {
     echo -e "\n" >> ~/.bashrc
     curl -s https://raw.githubusercontent.com/crazyuploader/Misc/master/functions >> ~/.bashrc
     NEWLINE
-    echo -e "${YELLOW}Done!${NC}"
+    echo -e "${YELLOW}'bashrc' file updated!${NC}"
 }
 
 START=$(date +"%s")  # Start Time Reference
