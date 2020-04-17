@@ -1,0 +1,18 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Bash Script Check
+    task:
+      jobs:
+        - name: Shellcheck Test
+          commands:
+            - checkout
+            - bash check_sh.sh
+      prologue:
+        commands:
+          - sudo apt-get update
+          - sudo apt-get install -y shellcheck
