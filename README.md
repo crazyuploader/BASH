@@ -1,6 +1,6 @@
 # Bash
 
-[![Build Status](https://travis-ci.com/crazyuploader/Bash.svg?branch=master)](https://travis-ci.com/crazyuploader/Bash)
+[![Build Status](https://travis-ci.com/crazyuploader/Bash.svg?branch=master)](https://travis-ci.com/crazyuploader/Bash) [![Build Status](https://crazyuploader.semaphoreci.com/badges/Bash.svg)](https://crazyuploader.semaphoreci.com/projects/Bash)
 
 **[`git.sh`](git.sh)**
 * Git Helper.
