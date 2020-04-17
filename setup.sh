@@ -55,7 +55,7 @@ function CLONE() {
         echo -e "${YELLOW}'${2}' directory exists, pulling the latest changes instead.${NC}"
         CD "$2"
         NEWLINE
-        echo -e "${YELLOW}By Default Script will only pull from remote 'origin' & branch 'master'${NC}"
+        echo -e "${YELLOW}By Default Script will only pull from remote 'origin' & default branch${NC}"
         NEWLINE
         git pull
         NEWLINE
@@ -66,6 +66,9 @@ function CLONE() {
 
 function KSETUP() {
     clear
+    if [[ "$1" == "CLI" || "$1" == "cli" ]]; then
+        return 0
+    fi
     echo -e "${GREEN}Kernel Environment Setup${NC}"
     NEWLINE
     echo "Install Kernel Building Dependencies?"
@@ -117,6 +120,10 @@ function FUNCTIONS() {
 
 START=$(date +"%s")  # Start Time Reference
 clear
+if [[ "$1" == "CLI" || "$1" == "cli" ]]; then
+    echo -e "${YELLOW}Running in CLI Mode\nWould skip kernel setup${NC}"
+    echo ""
+fi
 GIT="$(command -v git)"
 if [[ -z ${GIT} ]]; then  # Checking if git is installed or not, if it is not, ask to install or not.
     echo -e "${YELLOW}'git' not installed.${NC}"
@@ -249,7 +256,7 @@ NEWLINE
 echo -e "${GREEN}Saved Git Name:${NC} $(git config user.name)"
 NEWLINE
 sleep 2
-KSETUP
+KSETUP "$1"
 FUNCTIONS
 sleep 2
 NEWLINE
