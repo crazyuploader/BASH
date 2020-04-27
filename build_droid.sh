@@ -6,6 +6,16 @@ RED="\033[0;31m"
 GREEN="\033[1;32m"
 YELLOW="\033[1;33m"
 
+# Function to see if gradle is available
+function Gradle() {
+    IF_GRADLE="$(command -v gradle)"
+    if [[ -z "${IF_GRADLE}" ]]; then
+        ./gradlew ${1} ${2} ${3}
+    else
+        gradle ${1} ${2} ${3}
+    fi
+}
+
 echo -e "${YELLOW}Android App Builder${NC}"
 echo ""
 DIR_TB=""
@@ -23,13 +33,11 @@ for f in ${DIR_TB}; do
     echo "${f}"
 done
 echo ""
-echo -e "${GREEN}Gradle Version:${NC}\n$(gradle --version)"
-echo ""
 ERROR_DIR=0
 for build in ${DIR_TB}; do
     cd "${build}" || exit 1
     echo "Trying ---> ${build}"
-    BUILD_OUTPUT="$(gradle build)"
+    BUILD_OUTPUT="$(Gradle build)"
     ERROR_CODE="$?"
     if [[ "${ERROR_CODE}" != "0" ]]; then
         echo -e "${RED}---Error---${NC}"
