@@ -1,6 +1,6 @@
 # Bash
 
-[![Build Status](https://travis-ci.com/crazyuploader/Bash.svg?branch=master)](https://travis-ci.com/crazyuploader/Bash) [![Build Status](https://crazyuploader.semaphoreci.com/badges/Bash.svg)](https://crazyuploader.semaphoreci.com/projects/Bash)
+[![Build Status](https://travis-ci.com/crazyuploader/Bash.svg?branch=master)](https://travis-ci.com/crazyuploader/Bash) [![Build Status](https://crazyuploader.semaphoreci.com/badges/Bash.svg)](https://crazyuploader.semaphoreci.com/projects/Bash) [![CodeFactor](https://www.codefactor.io/repository/github/crazyuploader/bash/badge)](https://www.codefactor.io/repository/github/crazyuploader/bash)
 
 **[`git.sh`](git.sh)**
 * Git Helper.
