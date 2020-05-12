@@ -10,9 +10,9 @@ YELLOW="\033[1;33m"
 function Gradle() {
     IF_GRADLE="$(command -v gradle)"
     if [[ -z "${IF_GRADLE}" ]]; then
-        ./gradlew ${1} ${2} ${3}
+        ./gradlew "${1}" "${2}" "${3}"
     else
-        gradle ${1} ${2} ${3}
+        gradle "${1}" "${2}" "${3}"
     fi
 }
 
