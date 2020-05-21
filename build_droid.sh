@@ -10,8 +10,12 @@ YELLOW="\033[1;33m"
 function Gradle() {
     IF_GRADLE="$(command -v gradle)"
     if [[ -z "${IF_GRADLE}" ]]; then
+        # Disable shellcheck "SC2086" since fixing it breaks the script
+        # shellcheck disable=SC2086
         bash gradlew ${1} ${2} ${3}
     else
+        # Disable shellcheck "SC2086" since fixing it breaks the script
+        # shellcheck disable=SC2086
         gradle ${1} ${2} ${3}
     fi
 }
