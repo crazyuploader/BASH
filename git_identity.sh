@@ -22,6 +22,8 @@ function GET_IDENTITY() {
         echo ""
         echo -e "${YELLOW}Email:${NC} ${GREEN}${EMAIL}${NC}"
         echo -e "${YELLOW}Name:${NC}  ${GREEN}${USERNAME}${NC}"
+    else
+        exit 0
     fi
 }
 
