@@ -6,7 +6,7 @@
 function SET_ENVIRONMENT() {
     CC="${CLANG}"
     CLANG_VERSION="$(${CLANG} --version | grep 'clang version' | cut -c 37-)"
-    git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git ${TOOLCHAIN}/anykernel
+    git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel
     echo ""
 }
 
