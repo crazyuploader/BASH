@@ -4,13 +4,10 @@
 # Kernel Automated Script
 
 function SET_ENVIRONMENT() {
-    cd "${TOOLCHAIN}" || { echo "Failure!"; exit 1; }
-    cd clang || { echo "Failure!"; exit 1; }
-    CLANG_DIR="$(pwd)"
-    CC="${CLANG_DIR}/bin/clang"
-    CLANG_VERSION="$(./bin/clang --version | grep 'clang version' | cut -c 37-)"
-    cd ..
-    git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git anykernel
+    CC="${CLANG}"
+    CLANG_VERSION="$(${CLANG} --version | grep 'clang version' | cut -c 37-)"
+    git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git ${TOOLCHAIN}/anykernel
+    echo ""
 }
 
 # Variables Check
@@ -20,27 +17,14 @@ if [[ -z ${TOOLCHAIN} ]]; then
     exit 1
 fi
 
-if [[ -z "${KERNEL_REPO_URL}" ]]; then
-    echo "'KERNEL_REPO_URL' variable not found, please set it first."
-    exit 1
-fi
-
-if [[ -z "${DEF_CONFIG}" ]]; then
-    echo "'DEF_CONFIG' variable not found, please set it first."
-    exit 1
-fi
-
 if [[ -z "${KERNEL_NAME}" ]]; then
     echo "'KERNEL_NAME' variable not found, using default 'Kernel'"
+    echo ""
     KERNEL_NAME="Daath"
 fi
 
 # Set Up Environment
 SET_ENVIRONMENT
-
-echo ""
-git clone --depth=1 "${KERNEL_REPO_URL}" "${KERNEL_NAME}"
-cd "${KERNEL_NAME}" || exit
 
 # Variables
 PWD="$(pwd)"
@@ -73,7 +57,7 @@ echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLAN
 
 # Compilation
 echo ""
-make O=out ARCH=arm64 "${DEF_CONFIG}"
+make O=out ARCH=arm64 whyred-perf_defconfig
 make -j"$(nproc --all)"                                                     \
         O=out ARCH=arm64                                                     \
         CC="${CC}"                                                            \
