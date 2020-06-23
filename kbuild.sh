@@ -8,6 +8,11 @@ function SET_ENVIRONMENT() {
     CLANG_VERSION="$(${CLANG} --version | grep 'clang version' | cut -c 37-)"
     git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel
     echo ""
+    if [[ -z "${1}" ]]; then
+        DEF_CONFIG="whyred-perf_defconfig"
+    else
+        DEF_CONFIG="${1}"
+    fi
 }
 
 # Variables Check
@@ -24,7 +29,7 @@ if [[ -z "${KERNEL_NAME}" ]]; then
 fi
 
 # Set Up Environment
-SET_ENVIRONMENT
+SET_ENVIRONMENT "${1}"
 
 # Variables
 PWD="$(pwd)"
@@ -57,7 +62,7 @@ echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLAN
 
 # Compilation
 echo ""
-make O=out ARCH=arm64 whyred-perf_defconfig
+make O=out ARCH=arm64 ${DEF_CONFIG}
 make -j"$(nproc --all)"                                                     \
         O=out ARCH=arm64                                                     \
         CC="${CC}"                                                            \

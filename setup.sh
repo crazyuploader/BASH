@@ -25,7 +25,7 @@ DOCKER="https://github.com/crazyuploader/Docker-Builder.git"
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
 function CD() {
-    cd "$1" || { echo -e "${RED}Failure${NC}"; exit 1; }
+    cd "${1}" || { echo -e "${RED}Failure${NC}"; exit 1; }
 }
 
 # 'NEWLINE' prints a new line.
@@ -35,7 +35,7 @@ function NEWLINE() {
 
 # 'MKD' makes a directory, and enters it.
 function MKD() {
-    if [[ ! -d "$1" ]]; then
+    if [[ ! -d "${1}" ]]; then
         mkdir "$1"
         CD "$1"
         echo -e "${GREEN}'${1}' directory created.${NC}"
@@ -47,13 +47,13 @@ function MKD() {
 
 # 'CLONE' checks if the directory exists, if it doesn't git clone or else enters the directory git pull.
 function CLONE() {
-    if [[ ! -d "$2" ]]; then
-        git clone "$1" "$2"
+    if [[ ! -d "${2}" ]]; then
+        git clone "${1}" "${2}"
         NEWLINE
         echo "Done!"
     else
         echo -e "${YELLOW}'${2}' directory exists, pulling the latest changes instead.${NC}"
-        CD "$2"
+        CD "${2}"
         NEWLINE
         echo -e "${YELLOW}By Default Script will only pull from remote 'origin' & default branch${NC}"
         NEWLINE
@@ -66,7 +66,7 @@ function CLONE() {
 
 function KSETUP() {
     clear
-    if [[ "$1" == "CLI" || "$1" == "cli" ]]; then
+    if [[ "${1}" == "CLI" || "${1}" == "cli" ]]; then
         return 0
     fi
     echo -e "${GREEN}Kernel Environment Setup${NC}"
@@ -120,7 +120,7 @@ function FUNCTIONS() {
 
 START=$(date +"%s")  # Start Time Reference
 clear
-if [[ "$1" == "CLI" || "$1" == "cli" ]]; then
+if [[ "${1}" == "CLI" || "${1}" == "cli" ]]; then
     echo -e "${YELLOW}Running in CLI Mode\nWould skip kernel setup${NC}"
     echo ""
 fi
@@ -256,7 +256,7 @@ NEWLINE
 echo -e "${GREEN}Saved Git Name:${NC} $(git config user.name)"
 NEWLINE
 sleep 2
-KSETUP "$1"
+KSETUP "${1}"
 FUNCTIONS
 sleep 2
 NEWLINE
