@@ -9,7 +9,7 @@ function SET_ENVIRONMENT() {
     git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel
     echo ""
     if [[ -z "${1}" ]]; then
-        DEF_CONFIG="whyred-perf_defconfig"
+        DEF_CONFIG="whyred_defconfig"
     else
         DEF_CONFIG="${1}"
     fi
