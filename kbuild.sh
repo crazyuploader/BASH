@@ -34,11 +34,11 @@ SET_ENVIRONMENT "${1}"
 # Variables
 PWD="$(pwd)"
 NAME="$(basename "${PWD}")"
-TIME="$(date +%d%m%y%H%M)"
+TIME="$(date +%d%m%y)"
 KERNEL_VERSION="$(make kernelversion)"
 
 # Exporting Few Stuff
-export ZIPNAME="${KERNEL_NAME}-${TIME}.zip"
+export ZIPNAME="${KERNEL_NAME}_${TIME}.zip"
 export KERNEL_VERSION="${KERNEL_VERSION}"
 export ANYKERNEL_DIR="${TOOLCHAIN}/anykernel"
 export GCC_DIR="${GCC}"
@@ -62,13 +62,13 @@ echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLAN
 
 # Compilation
 echo ""
-make O=out ARCH=arm64 ${DEF_CONFIG}
+make O=out ARCH=arm64 "${DEF_CONFIG}"
 make -j"$(nproc --all)"                                                     \
         O=out ARCH=arm64                                                     \
         CC="${CC}"                                                            \
         CLANG_TRIPLE="aarch64-linux-gnu-"                                      \
         CROSS_COMPILE="${GCC_DIR}"                                              \
-        CROSS_COMPILE_ARM32="${GCC32_DIR}"
+        CROSS_COMPILE_ARM32="${GCC32_DIR}" | tee -a log.txt
 
 # Time Difference
 END="$(date +"%s")"
@@ -84,11 +84,13 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
 	curl -F chat_id="${KERNEL_CHAT_ID}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
+    rm -rf "${ZIPNAME}" Image.gz-dtb
 else
-  	curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
-            -d text="${NAME} Build finished with errors..."                     \
-            -d chat_id="${KERNEL_CHAT_ID}"                                       \
-            -d parse_mode=HTML
+    curl -F chat_id="${KERNEL_CHAT_ID}" \
+         -F caption="${NAME} finished with errors...\nAttaching Logs" \
+         -F document=@"${PWD}/log.txt" \
+         https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     echo "Built with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
     exit 1
 fi
+rm -rf "${PWD}"/log.txt
