@@ -51,11 +51,12 @@ export ARCH="arm64"
 export SUBARCH="arm64"
 
 # Telegram Message
-echo ""
-curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
-        -d text="CI Build -- ${NAME} at Version: ${KERNEL_VERSION}"         \
-        -d chat_id="${KERNEL_CHAT_ID}"                                       \
-        -d parse_mode=HTML
+# echo ""
+# curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
+#         -d text="CI Build -- ${NAME} at Version: ${KERNEL_VERSION}"         \
+#         -d chat_id="${KERNEL_CHAT_ID}"                                       \
+#         -d parse_mode=HTML
+
 START="$(date +"%s")"
 echo ""
 echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLANG_VERSION}"
@@ -82,6 +83,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
   	zip -r9 "${ZIPNAME}" ./*
   	echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
 	curl -F chat_id="${KERNEL_CHAT_ID}" \
+         -F caption="CI Build -- ${KERNEL_NAME} at Version: ${KERNEL_VERSION}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     rm -rf "${ZIPNAME}" Image.gz-dtb
