@@ -89,7 +89,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
     rm -rf "${ZIPNAME}" Image.gz-dtb
 else
     curl -F chat_id="${KERNEL_CHAT_ID}" \
-         -F caption="${NAME} finished with errors... Attaching Logs" \
+         -F caption="${KERNEL_NAME} finished with errors... Attaching Logs" \
          -F document=@"${PWD}/log.txt" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     echo "Built with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
