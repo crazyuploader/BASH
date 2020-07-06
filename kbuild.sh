@@ -83,7 +83,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
   	zip -r9 "${ZIPNAME}" ./*
   	echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
 	curl -F chat_id="${KERNEL_CHAT_ID}" \
-         -F caption="CI Build -- ${KERNEL_NAME} at Version: ${KERNEL_VERSION}" \
+         -F caption="CI Build -- ${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     rm -rf "${ZIPNAME}" Image.gz-dtb
