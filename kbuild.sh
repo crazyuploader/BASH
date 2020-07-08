@@ -36,6 +36,7 @@ PWD="$(pwd)"
 NAME="$(basename "${PWD}")"
 TIME="$(date +%d%m%y)"
 KERNEL_VERSION="$(make kernelversion)"
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 # Exporting Few Stuff
 export ZIPNAME="${KERNEL_NAME}_${TIME}.zip"
@@ -83,7 +84,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
   	zip -r9 "${ZIPNAME}" ./*
   	echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
 	curl -F chat_id="${KERNEL_CHAT_ID}" \
-         -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG}" \
+         -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG} -- BRANCH: ${BRANCH}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     rm -rf "${ZIPNAME}" Image.gz-dtb
