@@ -11,8 +11,8 @@ if [[ "${EUID}" -ne "0" ]]; then
 fi
 
 cd /tmp || exit 1
-wget https://github.com/tmate-io/tmate/releases/download/"${VERSION}"/"${NAME}".tar.xz
-tar -xvf "${NAME}".tar.xz
+wget -q https://github.com/tmate-io/tmate/releases/download/"${VERSION}"/"${NAME}".tar.xz
+tar -xf "${NAME}".tar.xz
 cd "${NAME}" || exit 1
 mv ./tmate /usr/bin
 cd ..
