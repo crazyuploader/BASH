@@ -41,19 +41,11 @@ ERROR_DIR=0
 for build in ${DIR_TB}; do
     cd "${build}" || exit 1
     echo "Trying ---> ${build}"
-    BUILD_OUTPUT="$(Gradle build)"
+    Gradle build
     ERROR_CODE="$?"
     if [[ "${ERROR_CODE}" != "0" ]]; then
         echo -e "${RED}---Error---${NC}"
-        echo ""
-        echo "${BUILD_OUTPUT}"
-        echo ""
-        echo -e "${RED}---Error---${NC}"
         ((ERROR_DIR = ERROR_DIR + 1))
-    else
-        echo ""
-        echo "${BUILD_OUTPUT}"
-        echo ""
     fi
     cd ..
 done
