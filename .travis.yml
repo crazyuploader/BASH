@@ -1,4 +1,4 @@
-dist: bionic
+dist: focal
 language: bash
 script:
   - echo "Running 'check_sh.sh' Script" && bash check_sh.sh
