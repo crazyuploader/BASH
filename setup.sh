@@ -14,13 +14,13 @@ HUB_NAME="crazyuploader"
 HUB_EMAIL="49350241+crazyuploader@users.noreply.github.com"
 
 # Repositories
-BASH="https://github.com/crazyuploader/Bash.git"
-PYTHON="https://github.com/crazyuploader/Python.git"
-CPP="https://github.com/crazyuploader/CPP.git"
-C="https://github.com/crazyuploader/C.git"
-COLLEGESTUFF="https://github.com/crazyuploader/CollegeStuff.git"
-DATA="https://github.com/crazyuploader/Data.git"
-DOCKER="https://github.com/crazyuploader/Docker-Builder.git"
+BASH="git@github.com:crazyuploader/Bash.git"
+PYTHON="git@github.com:crazyuploader/Python.git"
+CPP="git@github.com:crazyuploader/CPP.git"
+C="git@github.com:crazyuploader/C.git"
+COLLEGESTUFF="git@github.com:crazyuploader/CollegeStuff.git"
+DATA="git@github.com:crazyuploader/Data.git"
+DOCKER="git@github.com:crazyuploader/Docker-Builder.git"
 
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
