@@ -1,3 +1,5 @@
+arch: arm64
+os: linux
 dist: focal
 language: bash
 script:
