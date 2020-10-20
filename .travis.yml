@@ -2,5 +2,9 @@ arch: arm64
 os: linux
 dist: focal
 language: bash
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install -y shellcheck
 script:
-  - echo "Running 'check_sh.sh' Script" && bash check_sh.sh
+  - echo "Running 'check_sh.sh' Script"
+  - bash check_sh.sh
