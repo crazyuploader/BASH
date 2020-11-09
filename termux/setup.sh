@@ -4,9 +4,9 @@ clear
 echo "Setting up Termux App"
 echo ""
 apt-get update
-apt-get upgrade -y
+yes "Y" | apt-get upgrade -y
 apt-get install -y openssh dnsutils nano \
                    git python nodejs-lts yarn \
-                   mtr traceroute
+                   tracepath
 termux-setup-storage
 echo "Done!"
