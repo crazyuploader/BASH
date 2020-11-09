@@ -7,6 +7,6 @@ apt-get update
 yes "Y" | apt-get upgrade -y
 apt-get install -y openssh dnsutils nano \
                    git python nodejs-lts yarn \
-                   tracepath
+                   tracepath man
 termux-setup-storage
 echo "Done!"
