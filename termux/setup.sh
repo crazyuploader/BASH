@@ -11,10 +11,15 @@ apt-get install -y openssh dnsutils nano \
                    tracepath man
 echo ""
 git --version
+echo ""
 python --version
+echo ""
 pip --version
+echo ""
 echo "Node Version: $(node --version)"
+echo ""
 echo "NPM: $(npm --version)"
+echo ""
 echo "Yarn: $(yarn --version)"
 echo ""
 echo "Done!"
