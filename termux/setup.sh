@@ -13,8 +13,8 @@ echo ""
 git --version
 python --version
 pip --version
-node --version
-npm --version
-yarn --version
+echo "Node Version: $(node --version)"
+echo "NPM: $(npm --version)"
+echo "Yarn: $(yarn --version)"
 echo ""
 echo "Done!"
