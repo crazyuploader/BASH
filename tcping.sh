@@ -10,4 +10,4 @@ fi
 apt-get update
 apt-get install -y tcptraceroute
 wget http://www.vdberg.org/~richard/tcpping -O /usr/bin/tcping
-chmod 755 tcping
+chmod 755 /usr/bin/tcping
