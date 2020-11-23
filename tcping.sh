@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# Script to install tcping and make it executable under 'bin' folder
+
+# Check if tcping is already installed
+TCPING="$(command -v tcping)"
+if [[ -n "${TCPING}" ]]; then
+    echo "'tcping' is already installed!"
+    exit 0
+fi
+
 # Root check
 if [[ "${EUID}" -ne "0" ]]; then
     echo ""
@@ -9,6 +18,7 @@ fi
 
 TCPTRACEROUTE="$(command -v tcptraceroute)"
 if [[ -z "${TCPTRACEROUTE}" ]]; then
+    echo "'tcptraceroute' not installed, installing..."
     apt-get update
     apt-get install -y tcptraceroute
 fi
