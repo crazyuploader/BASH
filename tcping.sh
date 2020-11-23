@@ -7,7 +7,11 @@ if [[ "${EUID}" -ne "0" ]]; then
     exit 1
 fi
 
-apt-get update
-apt-get install -y tcptraceroute
+TCPTRACEROUTE="$(command -v tcptraceroute)"
+if [[ -z "${TCPTRACEROUTE}" ]]; then
+    apt-get update
+    apt-get install -y tcptraceroute
+fi
 wget http://www.vdberg.org/~richard/tcpping -O /usr/bin/tcping
 chmod 755 /usr/bin/tcping
+echo "tcping installed!"
