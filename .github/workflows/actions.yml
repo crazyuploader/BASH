@@ -1,0 +1,11 @@
+name: ShellCheck
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: bash check_sh.sh
+        run: |
+          ./check_sh.sh
