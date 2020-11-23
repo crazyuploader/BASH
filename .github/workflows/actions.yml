@@ -6,11 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Installing ShellCheck
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y shellcheck
-
       - name: bash check_sh.sh
         run: |
           ./check_sh.sh
