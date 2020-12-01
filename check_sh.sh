@@ -9,7 +9,7 @@ RED="\033[0;31m"
 # List all the .sh file(s)
 echo -e "${GREEN}" "Available files -${NC}"
 FILES=0
-LIST_FILES="$(find . -path ./.git -prune -o -name '*.sh' -print | sed 's|^./||')"
+LIST_FILES="$(find . -path ./.git -prune -o -name '*.sh' -print | sed 's|^./||' | sort)"
 for file in ${LIST_FILES}; do
     echo "$file"
     (( FILES = FILES + 1 ))
