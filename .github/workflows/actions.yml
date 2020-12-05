@@ -1,7 +1,7 @@
 name: ShellCheck
 on: [push, pull_request]
 jobs:
-  build:
+  shell-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
