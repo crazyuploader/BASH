@@ -7,7 +7,8 @@ function SET_ENVIRONMENT() {
     CC="${CLANG}"
     CLANG_VERSION="$(${CLANG} --version | grep 'clang version' | cut -c 37-)"
     if [[ ! -d "${TOOLCHAIN}/anykernel" ]]; then
-        git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel
+        echo "Getting Anykernel3..."
+        git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel 1> /dev/null
     fi
     if [[ -z "${1}" ]]; then
         DEF_CONFIG="whyred_defconfig"
@@ -19,28 +20,30 @@ function SET_ENVIRONMENT() {
 # Variables Check
 echo ""
 if [[ -z "${TOOLCHAIN}" ]]; then
-    echo "Don't know where to get compilers from"
+    echo "FATAL: Compilers not found"
     exit 1
 fi
 
 if [[ -z "${KERNEL_NAME}" ]]; then
-    echo "'KERNEL_NAME' variable not found, using default 'Kernel' as kernel name"
-    echo ""
+    echo "Warning: 'KERNEL_NAME' variable not found, using default 'Daath' as kernel name"
     KERNEL_NAME="Daath"
 fi
+
 if [[ -z "${BOT_API_TOKEN}" ]]; then
     echo "Warning: Telegram Bot API Token not found..."
 fi
+
 if [[ -z "${KERNEL_CHAT_ID}" ]]; then
     echo "Warning: Telegram Chat ID not found..."
 fi
+echo ""
 
 # Set Up Environment
 SET_ENVIRONMENT "${1}"
 
 # Variables
 PWD="$(pwd)"
-NAME="$(basename "${PWD}")"
+DIRNAME="$(basename "${PWD}")"
 TIME="$(date +%d%m%y)"
 KERNEL_VERSION="$(make kernelversion)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -61,14 +64,14 @@ export SUBARCH="arm64"
 # Telegram Message
 # echo ""
 # curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
-#         -d text="CI Build -- ${NAME} at Version: ${KERNEL_VERSION}"         \
+#         -d text="CI Build -- ${DIRNAME} at Version: ${KERNEL_VERSION}"         \
 #         -d chat_id="${KERNEL_CHAT_ID}"                                       \
 #         -d parse_mode=HTML
 
 START="$(date +"%s")"
 echo ""
-echo "Compiling ${NAME} at version: ${KERNEL_VERSION}"
-echo "Defconfig ${DEF_CONFIG}"
+echo "Compiling ${DIRNAME} at version: ${KERNEL_VERSION}"
+echo "Defconfig: ${DEF_CONFIG}"
 echo "Clang Version: ${CLANG_VERSION}"
 
 # Compilation
