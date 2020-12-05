@@ -52,10 +52,10 @@ echo "Enter Def_Config: "
 read -r DEFCONFIG
 echo ""
 if [[ -f "arch/arm64/configs/${DEFCONFIG}" ]]; then
-    echo -e "Entered Def_Config: ${GREEN}${DEFCONFIG}${NC}"
+	echo -e "Entered Def_Config: ${GREEN}${DEFCONFIG}${NC}"
 else
-    echo -e "Entered Def_Config: ${RED}${DEFCONFIG} Does not exist.${NC}"
-    exit 1
+	echo -e "Entered Def_Config: ${RED}${DEFCONFIG} Does not exist.${NC}"
+	exit 1
 fi
 echo ""
 echo -e "Clang Version: ${GREEN}${CLANG_VERSION}${NC}"
@@ -63,14 +63,14 @@ echo ""
 echo "Enter Number of Parallel Jobs:"
 read -r CORES
 if [[ ${CORES} -gt "${NO_OF_CORES}" ]]; then
-    echo ""
-    echo -e "Aho Ka! ${YELLOW}Using all ${NO_OF_CORES} cores${NC}"
-    CORES="${NO_OF_CORES}"
+	echo ""
+	echo -e "Aho Ka! ${YELLOW}Using all ${NO_OF_CORES} cores${NC}"
+	CORES="${NO_OF_CORES}"
 else
-    if [[ -z "${CORES}" || ${CORES} -lt "1" ]]; then
-        echo -e "Aho Ka! ${YELLOW}Using all ${NO_OF_CORES} cores${NC}"
-        CORES="${NO_OF_CORES}"
-    fi
+	if [[ -z "${CORES}" || ${CORES} -lt "1" ]]; then
+		echo -e "Aho Ka! ${YELLOW}Using all ${NO_OF_CORES} cores${NC}"
+		CORES="${NO_OF_CORES}"
+	fi
 fi
 echo ""
 echo -e "Entered Number of Cores: ${GREEN}${CORES}${NC}"
@@ -83,13 +83,13 @@ make O=out ARCH=arm64 "$DEFCONFIG"
 
 # Compilation
 START=$(date +"%s")
-make -j"${CORES}"                                                        \
-    O=out                                                             \
-    ARCH=arm64                                                         \
-    CC="${TOOLCHAIN}/clang/bin/clang"                                   \
-    CLANG_TRIPLE="aarch64-linux-gnu-"                                    \
-    CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-"           \
-    CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
+make -j"${CORES}" \
+	O=out \
+	ARCH=arm64 \
+	CC="${TOOLCHAIN}/clang/bin/clang" \
+	CLANG_TRIPLE="aarch64-linux-gnu-" \
+	CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-" \
+	CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
 
 # Time Difference
 END=$(date +"%s")
@@ -97,24 +97,24 @@ DIFF=$((END - START))
 
 # Zipping
 if [[ -f $(pwd)/out/arch/arm64/boot/Image.gz-dtb ]]; then
-    cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL}"
-    cd "${ANYKERNEL}" || exit
-    mv ./*.zip ../Builds
-    zip -r9 "${ZIPNAME}" ./*
-    ls -lh
-    echo -e "${GREEN}Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
-    echo ""
-    echo "Flashable Zip in: ${ANYKERNEL}"
-    echo "MD5: $(md5sum "${ZIPNAME}")"
-    rm -rf "${PWD}/out/"
-    spd-say "Build Finished"
+	cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL}"
+	cd "${ANYKERNEL}" || exit
+	mv ./*.zip ../Builds
+	zip -r9 "${ZIPNAME}" ./*
+	ls -lh
+	echo -e "${GREEN}Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
+	echo ""
+	echo "Flashable Zip in: ${ANYKERNEL}"
+	echo "MD5: $(md5sum "${ZIPNAME}")"
+	rm -rf "${PWD}/out/"
+	spd-say "Build Finished"
 else
-    echo ""
-    echo -e "${RED}Build Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
-    rm -rf "${PWD}/out/"
-    mplayer ~/beep.wav>> /dev/null 2>&1
-    sleep 0.5
-    spd-say "Build Failed with errors."
-    mplayer ~/beep.wav>> /dev/null 2>&1
-    exit 1
+	echo ""
+	echo -e "${RED}Build Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
+	rm -rf "${PWD}/out/"
+	mplayer ~/beep.wav >>/dev/null 2>&1
+	sleep 0.5
+	spd-say "Build Failed with errors."
+	mplayer ~/beep.wav >>/dev/null 2>&1
+	exit 1
 fi

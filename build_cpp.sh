@@ -18,63 +18,63 @@ echo ""
 echo -e "Enter File Name -- ${YELLOW}Without '.cpp' Extension${NC}"
 read -r fname
 if [[ -f ${fname}.cpp ]]; then
-    echo ""
-    echo "What do you want to compile '${fname}.cpp' with?"
-    echo "Clang++ or G++"
-    echo "Enter '1' for Clang++ and '2' for G++"
-    read -r temp
-    COMPILED_PROGRAM=a.out
-    if [[ ${temp} = "1" ]]; then
-        clear
-        echo "Compiling '$fname.cpp' with Clang++"
-        clang++ "$fname.cpp"
-        if [[ -f ${COMPILED_PROGRAM} ]]; then
-            echo ""
-            echo "Build With Clang++ without any errors"
-            sleep .5
-            clear
-        else
-            echo ""
-            echo -e "${RED}" "Check the Program Please"
-            sleep 5
-            clear
-            exit
-        fi
-    else
-        if [[ ${temp} = "2" ]]; then
-            clear
-            echo "Compiling '${fname}.cpp' with G++"
-            g++ "${fname}.cpp"
-            if [[ -f ${COMPILED_PROGRAM} ]]; then
-                echo ""
-                echo "Build With G++ without any errors"
-                sleep .5
-                clear
-            else
-                echo ""
-                echo -e "${RED}" "Check the Program Please"
-                sleep 5
-                clear
-                exit
-            fi
-        else
-            if [ "${temp}" != "1" ] && [ "${temp}" != "2" ]; then
-                echo -e "${RED}Wrong Compiler${NC}"
-                echo "Exiting!"
-                sleep 1
-                clear
-                exit
-            fi
-        fi
-    fi
+	echo ""
+	echo "What do you want to compile '${fname}.cpp' with?"
+	echo "Clang++ or G++"
+	echo "Enter '1' for Clang++ and '2' for G++"
+	read -r temp
+	COMPILED_PROGRAM=a.out
+	if [[ ${temp} = "1" ]]; then
+		clear
+		echo "Compiling '$fname.cpp' with Clang++"
+		clang++ "$fname.cpp"
+		if [[ -f ${COMPILED_PROGRAM} ]]; then
+			echo ""
+			echo "Build With Clang++ without any errors"
+			sleep .5
+			clear
+		else
+			echo ""
+			echo -e "${RED}" "Check the Program Please"
+			sleep 5
+			clear
+			exit
+		fi
+	else
+		if [[ ${temp} = "2" ]]; then
+			clear
+			echo "Compiling '${fname}.cpp' with G++"
+			g++ "${fname}.cpp"
+			if [[ -f ${COMPILED_PROGRAM} ]]; then
+				echo ""
+				echo "Build With G++ without any errors"
+				sleep .5
+				clear
+			else
+				echo ""
+				echo -e "${RED}" "Check the Program Please"
+				sleep 5
+				clear
+				exit
+			fi
+		else
+			if [ "${temp}" != "1" ] && [ "${temp}" != "2" ]; then
+				echo -e "${RED}Wrong Compiler${NC}"
+				echo "Exiting!"
+				sleep 1
+				clear
+				exit
+			fi
+		fi
+	fi
 else
-    echo ""
-    echo -e "${RED}File Does not Exist!${NC}"
-    echo "Exiting..."
-    echo -e "${MAGENTA}K Thanks, Bye!${NC}"
-    sleep 1
-    clear
-    exit
+	echo ""
+	echo -e "${RED}File Does not Exist!${NC}"
+	echo "Exiting..."
+	echo -e "${MAGENTA}K Thanks, Bye!${NC}"
+	sleep 1
+	clear
+	exit
 fi
 echo "Running Compiled Program Now"
 sleep 1
@@ -86,25 +86,25 @@ echo ""
 echo "'y' for yes and anything else for no"
 read -r temp
 if [[ ${temp} = "y" ]]; then
-    clear
-    echo -e "${YELLOW}///// Source Code for '${fname}.cpp' /////${NC}"
-    echo ""
-    cat "${fname}.cpp"
-    sleep 5
-    echo ""
-    echo "Press 'y' to Exit"
-    read -r temp
-    if [[ ${temp} = "y" ]]; then
-        clear
-        sleep 1
-        echo -e "${MAGENTA}K Thanks, Bye!${NC}"
-        exit
-    fi
+	clear
+	echo -e "${YELLOW}///// Source Code for '${fname}.cpp' /////${NC}"
+	echo ""
+	cat "${fname}.cpp"
+	sleep 5
+	echo ""
+	echo "Press 'y' to Exit"
+	read -r temp
+	if [[ ${temp} = "y" ]]; then
+		clear
+		sleep 1
+		echo -e "${MAGENTA}K Thanks, Bye!${NC}"
+		exit
+	fi
 else
-    if [[ ${temp} != "y" ]]; then
-        clear
-        echo -e "${MAGENTA}K Thanks, Bye!${NC}"
-        sleep 1
-        exit
-    fi
+	if [[ ${temp} != "y" ]]; then
+		clear
+		echo -e "${MAGENTA}K Thanks, Bye!${NC}"
+		sleep 1
+		exit
+	fi
 fi

@@ -13,8 +13,8 @@ yes "Y" | apt-get upgrade -y
 
 # Install packages
 apt-get install -y openssh dnsutils nano \
-                   git python nodejs-lts yarn \
-                   tracepath man
+	git python nodejs-lts yarn \
+	tracepath man
 
 # Installing root repo
 apt-get install -y root-repo

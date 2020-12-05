@@ -25,130 +25,133 @@ DOCKER="git@github.com:crazyuploader/Docker-Builder.git"
 # Custom Functions
 # 'CD' changes the directory or throws an error, and exists.
 function CD() {
-    cd "${1}" || { echo -e "${RED}Failure${NC}"; exit 1; }
+	cd "${1}" || {
+		echo -e "${RED}Failure${NC}"
+		exit 1
+	}
 }
 
 # 'NEWLINE' prints a new line.
 function NEWLINE() {
-    echo ""
+	echo ""
 }
 
 # 'MKD' makes a directory, and enters it.
 function MKD() {
-    if [[ ! -d "${1}" ]]; then
-        mkdir "$1"
-        CD "$1"
-        echo -e "${GREEN}'${1}' directory created.${NC}"
-    else
-        echo -e "${YELLOW}'${1}' already exists, nevermind.${NC}"
-        CD "$1"
-    fi
+	if [[ ! -d "${1}" ]]; then
+		mkdir "$1"
+		CD "$1"
+		echo -e "${GREEN}'${1}' directory created.${NC}"
+	else
+		echo -e "${YELLOW}'${1}' already exists, nevermind.${NC}"
+		CD "$1"
+	fi
 }
 
 # 'CLONE' checks if the directory exists, if it doesn't git clone or else enters the directory git pull.
 function CLONE() {
-    if [[ ! -d "${2}" ]]; then
-        git clone "${1}" "${2}"
-        NEWLINE
-        echo "Done!"
-    else
-        echo -e "${YELLOW}'${2}' directory exists, pulling the latest changes instead.${NC}"
-        CD "${2}"
-        NEWLINE
-        echo -e "${YELLOW}By Default Script will only pull from remote 'origin' & default branch${NC}"
-        NEWLINE
-        git pull
-        NEWLINE
-        echo "Done!"
-        CD ..
-    fi
+	if [[ ! -d "${2}" ]]; then
+		git clone "${1}" "${2}"
+		NEWLINE
+		echo "Done!"
+	else
+		echo -e "${YELLOW}'${2}' directory exists, pulling the latest changes instead.${NC}"
+		CD "${2}"
+		NEWLINE
+		echo -e "${YELLOW}By Default Script will only pull from remote 'origin' & default branch${NC}"
+		NEWLINE
+		git pull
+		NEWLINE
+		echo "Done!"
+		CD ..
+	fi
 }
 
 function KSETUP() {
-    clear
-    if [[ "${1}" == "CLI" || "${1}" == "cli" ]]; then
-        return 0
-    fi
-    echo -e "${GREEN}Kernel Environment Setup${NC}"
-    NEWLINE
-    echo "Install Kernel Building Dependencies?"
-    echo "'y' for yes, and anything for no"
-    read -r TEMP
-    if [[ "${TEMP}" = "y" ]]; then
-        sudo apt-get update
-        NEWLINE
-        sudo apt-get upgrade -y
-        NEWLINE
-        sudo apt-get install -y      \
-            curl     \
-            git       \
-            python3    \
-            python3-pip \
-            bc           \
-            tar           \
-            make           \
-            wget            \
-            gcc              \
-            python-is-python3 \
-            clang              \
-            libssl-dev          \
-            zip                  \
-            mplayer               \
-            shellcheck
+	clear
+	if [[ "${1}" == "CLI" || "${1}" == "cli" ]]; then
+		return 0
+	fi
+	echo -e "${GREEN}Kernel Environment Setup${NC}"
+	NEWLINE
+	echo "Install Kernel Building Dependencies?"
+	echo "'y' for yes, and anything for no"
+	read -r TEMP
+	if [[ "${TEMP}" = "y" ]]; then
+		sudo apt-get update
+		NEWLINE
+		sudo apt-get upgrade -y
+		NEWLINE
+		sudo apt-get install -y \
+			curl \
+			git \
+			python3 \
+			python3-pip \
+			bc \
+			tar \
+			make \
+			wget \
+			gcc \
+			python-is-python3 \
+			clang \
+			libssl-dev \
+			zip \
+			mplayer \
+			shellcheck
 
-    else
-        echo "Installing nothing, off you go!"
-        clear
-    fi
+	else
+		echo "Installing nothing, off you go!"
+		clear
+	fi
 }
 
 function FUNCTIONS() {
-    clear
-    echo -e "${GREEN}Setting Bash Functions${NC}"
-    NEWLINE
-    if [[ -f "${HOME}/.bashrc" ]]; then
-        echo "'.bashrc' exists"
-        sed -i '/#<>/,$d' ~/.bashrc
-    else
-        echo "'.bashrc' doesn't exist, creating it"
-        echo "# Script file executed whenever a user logs into bash" > ~/.bashrc
-    fi
-    echo -e "\n" >> ~/.bashrc
-    curl -s https://raw.githubusercontent.com/crazyuploader/Misc/master/functions >> ~/.bashrc
-    NEWLINE
-    echo -e "${YELLOW}'bashrc' file updated!${NC}"
+	clear
+	echo -e "${GREEN}Setting Bash Functions${NC}"
+	NEWLINE
+	if [[ -f "${HOME}/.bashrc" ]]; then
+		echo "'.bashrc' exists"
+		sed -i '/#<>/,$d' ~/.bashrc
+	else
+		echo "'.bashrc' doesn't exist, creating it"
+		echo "# Script file executed whenever a user logs into bash" >~/.bashrc
+	fi
+	echo -e "\n" >>~/.bashrc
+	curl -s https://raw.githubusercontent.com/crazyuploader/Misc/master/functions >>~/.bashrc
+	NEWLINE
+	echo -e "${YELLOW}'bashrc' file updated!${NC}"
 }
 
-START=$(date +"%s")  # Start Time Reference
+START=$(date +"%s") # Start Time Reference
 clear
 if [[ "${1}" == "CLI" || "${1}" == "cli" ]]; then
-    echo -e "${YELLOW}Running in CLI Mode\nWould skip kernel setup${NC}"
-    echo ""
+	echo -e "${YELLOW}Running in CLI Mode\nWould skip kernel setup${NC}"
+	echo ""
 fi
 GIT="$(command -v git)"
-if [[ -z ${GIT} ]]; then  # Checking if git is installed or not, if it is not, ask to install or not.
-    echo -e "${YELLOW}'git' not installed.${NC}"
-    NEWLINE
-    echo "Install?"
-    echo "Press 'y' to yes and anything else to exit."
-    read -r temp
-    if [[ ${temp} = "y" ]]; then
-        NEWLINE
-        echo "Installing 'git'"
-        NEWLINE
-        sudo apt-get update
-        NEWLINE
-        sudo apt-get install -y git
-    else
-        NEWLINE
-        echo -e "${RED}Script can't work without 'git'${NC} :("
-        echo "Exiting..."
-        sleep 3
-        clear
-        exit
-    fi
+if [[ -z ${GIT} ]]; then # Checking if git is installed or not, if it is not, ask to install or not.
+	echo -e "${YELLOW}'git' not installed.${NC}"
+	NEWLINE
+	echo "Install?"
+	echo "Press 'y' to yes and anything else to exit."
+	read -r temp
+	if [[ ${temp} = "y" ]]; then
+		NEWLINE
+		echo "Installing 'git'"
+		NEWLINE
+		sudo apt-get update
+		NEWLINE
+		sudo apt-get install -y git
+	else
+		NEWLINE
+		echo -e "${RED}Script can't work without 'git'${NC} :("
+		echo "Exiting..."
+		sleep 3
+		clear
+		exit
+	fi
 else
-    echo -e "${GREEN}'git' installed, good to go.${NC}"
+	echo -e "${GREEN}'git' installed, good to go.${NC}"
 fi
 sleep 1
 clear
@@ -212,43 +215,43 @@ clear
 GIT_NAME=$(git config user.name)
 GIT_EMAIL=$(git config user.email)
 if [[ -z ${GIT_NAME} ]] && [[ -z ${GIT_EMAIL} ]]; then
-    echo "Your Git Identity seems to be empty, wanna add?"
-    NEWLINE
-    echo "'y' for yes, anything else for no"
-    echo "Choice?"
-    read -r TEMP
-    if [[ $TEMP = "y" ]]; then
-        echo "If 'Jugal Kishore' press 'j', anything else if not"
-        NEWLINE
-        echo "Choice?"
-        read -r TEMP
-        if [[ $TEMP = "j" ]]; then
-            echo "Git Identity to be added:"
-            NEWLINE
-            echo -e "Username: ${GREEN}${HUB_NAME}${NC}"
-            echo -e "Email: ${GREEN}${HUB_EMAIL}${NC}"
-            NEWLINE
-            echo "Save?"
-            echo "Press 'y' for yes, anything else for no"
-            git config --global user.name "${HUB_NAME}"
-            git config --global user.email "${HUB_EMAIL}"
-        else
-            echo "Enter Your Name: "
-            read -r G_NAME
-            git config --global user.name "${G_NAME}"
-            NEWLINE
-            echo -e "Git Name set to: ${GREEN}${G_NAME}${NC}"
-            clear
-            echo "Enter Your Email: "
-            read -r G_EMAIL
-            git config --global user.email "${G_EMAIL}"
-            NEWLINE
-            echo -e "Git Email set to: ${GREEN}${G_EMAIL}${NC}"
-        fi
-        clear
-        git config --global credential.helper "cache --timeout=7200"
-        echo -e "${GREEN}Git Identity Saved.${NC}"
-    fi
+	echo "Your Git Identity seems to be empty, wanna add?"
+	NEWLINE
+	echo "'y' for yes, anything else for no"
+	echo "Choice?"
+	read -r TEMP
+	if [[ $TEMP = "y" ]]; then
+		echo "If 'Jugal Kishore' press 'j', anything else if not"
+		NEWLINE
+		echo "Choice?"
+		read -r TEMP
+		if [[ $TEMP = "j" ]]; then
+			echo "Git Identity to be added:"
+			NEWLINE
+			echo -e "Username: ${GREEN}${HUB_NAME}${NC}"
+			echo -e "Email: ${GREEN}${HUB_EMAIL}${NC}"
+			NEWLINE
+			echo "Save?"
+			echo "Press 'y' for yes, anything else for no"
+			git config --global user.name "${HUB_NAME}"
+			git config --global user.email "${HUB_EMAIL}"
+		else
+			echo "Enter Your Name: "
+			read -r G_NAME
+			git config --global user.name "${G_NAME}"
+			NEWLINE
+			echo -e "Git Name set to: ${GREEN}${G_NAME}${NC}"
+			clear
+			echo "Enter Your Email: "
+			read -r G_EMAIL
+			git config --global user.email "${G_EMAIL}"
+			NEWLINE
+			echo -e "Git Email set to: ${GREEN}${G_EMAIL}${NC}"
+		fi
+		clear
+		git config --global credential.helper "cache --timeout=7200"
+		echo -e "${GREEN}Git Identity Saved.${NC}"
+	fi
 fi
 echo -e "Git Identity -"
 NEWLINE
@@ -261,8 +264,8 @@ KSETUP "${1}"
 FUNCTIONS
 sleep 2
 NEWLINE
-END=$(date +"%s")  #Stop Time Reference
-DIFF=$((END - START))  # Difference between 'start' and 'stop' time Reference
+END=$(date +"%s")     #Stop Time Reference
+DIFF=$((END - START)) # Difference between 'start' and 'stop' time Reference
 echo -e "Script ended in: ${YELLOW}$((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s).${NC}"
 NEWLINE
 echo -e "Created by: ${GREEN}Jugal Kishore${NC}"
