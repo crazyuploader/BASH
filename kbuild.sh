@@ -21,7 +21,11 @@ function SEND_FILE() {
 	if [[ -z "${1}" ]]; then
 		echo "Can't operate without a file!"
 	fi
+	echo "Sending with ffsend..."
 	ffsend upload --downloads 5 "${1}"
+	echo ""
+	echo "Sending to file.io using curl"
+	curl --silent -F "file=@${1}" https://file.io/?expires=1d
 }
 
 # Variables Check
@@ -111,7 +115,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
 	EXIT_CODE="${?}"
 	if [[ "${EXIT_CODE}" -ne "0" ]]; then
 		echo ""
-		echo "Sending zip failed using curl, trying ffsend"
+		echo "Sending zip to Telegram using curl failed, trying ffsend, file.io"
 		SEND_FILE "$(pwd)"/"${ZIPNAME}"
 	fi
 	rm -rf "${ZIPNAME}" Image.gz-dtb
