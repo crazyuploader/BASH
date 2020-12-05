@@ -6,8 +6,9 @@
 function SET_ENVIRONMENT() {
     CC="${CLANG}"
     CLANG_VERSION="$(${CLANG} --version | grep 'clang version' | cut -c 37-)"
-    git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel
-    echo ""
+    if [[ ! -d "${TOOLCHAIN}/anykernel" ]]; then
+        git clone --depth=1 https://github.com/crazyuploader/AnyKernel3.git "${TOOLCHAIN}"/anykernel
+    fi
     if [[ -z "${1}" ]]; then
         DEF_CONFIG="whyred_defconfig"
     else
@@ -17,15 +18,21 @@ function SET_ENVIRONMENT() {
 
 # Variables Check
 echo ""
-if [[ -z ${TOOLCHAIN} ]]; then
+if [[ -z "${TOOLCHAIN}" ]]; then
     echo "Don't know where to get compilers from"
     exit 1
 fi
 
 if [[ -z "${KERNEL_NAME}" ]]; then
-    echo "'KERNEL_NAME' variable not found, using default 'Kernel'"
+    echo "'KERNEL_NAME' variable not found, using default 'Kernel' as kernel name"
     echo ""
     KERNEL_NAME="Daath"
+fi
+if [[ -z "${BOT_API_TOKEN}" ]]; then
+    echo "Warning: Telegram Bot API Token not found..."
+fi
+if [[ -z "${KERNEL_CHAT_ID}" ]]; then
+    echo "Warning: Telegram Chat ID not found..."
 fi
 
 # Set Up Environment
@@ -60,7 +67,9 @@ export SUBARCH="arm64"
 
 START="$(date +"%s")"
 echo ""
-echo "Compiling ${NAME} at version: ${KERNEL_VERSION} with Clang Version: ${CLANG_VERSION}"
+echo "Compiling ${NAME} at version: ${KERNEL_VERSION}"
+echo "Defconfig ${DEF_CONFIG}"
+echo "Clang Version: ${CLANG_VERSION}"
 
 # Compilation
 echo ""
