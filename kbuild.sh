@@ -17,6 +17,13 @@ function SET_ENVIRONMENT() {
     fi
 }
 
+function SEND_FILE() {
+    if [[ -z "${1}" ]]; then
+        echo "Can't operate without a file!"
+    fi
+    ffsend upload --downloads 1 --expiry-time 24h "${1}"
+}
+
 # Variables Check
 echo ""
 if [[ -z "${TOOLCHAIN}" ]]; then
@@ -100,6 +107,11 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
          -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG} -- BRANCH: ${BRANCH}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
+    EXIT_CODE="${?}"
+    if [[ "${EXIT_CODE}" -ne "0" ]]; then
+        echo "Sending zip failed using curl, trying ffsend"
+        SEND_FILE "$(pwd)"/"${ZIPNAME}"
+    fi
     rm -rf "${ZIPNAME}" Image.gz-dtb
 else
     curl -s \
