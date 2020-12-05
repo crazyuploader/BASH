@@ -21,7 +21,7 @@ function SEND_FILE() {
 	if [[ -z "${1}" ]]; then
 		echo "Can't operate without a file!"
 	fi
-	ffsend upload --downloads 1 --expiry-time 24h "${1}"
+	ffsend upload --downloads 10 "${1}"
 }
 
 # Variables Check
