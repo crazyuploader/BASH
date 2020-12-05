@@ -91,17 +91,19 @@ DIFF="$((END - START))"
 # Zipping
 echo ""
 if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
-  	cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL_DIR}"
-  	cd "${ANYKERNEL_DIR}" || exit
-  	zip -r9 "${ZIPNAME}" ./*
-  	echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
-	curl -s -F chat_id="${KERNEL_CHAT_ID}" \
+    cp "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" "${ANYKERNEL_DIR}"
+    cd "${ANYKERNEL_DIR}" || exit
+    zip -r9 "${ZIPNAME}" ./*
+    echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
+    curl -s \
+         -F chat_id="${KERNEL_CHAT_ID}" \
          -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG} -- BRANCH: ${BRANCH}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     rm -rf "${ZIPNAME}" Image.gz-dtb
 else
-    curl -s -F chat_id="${KERNEL_CHAT_ID}" \
+    curl -s \
+         -F chat_id="${KERNEL_CHAT_ID}" \
          -F caption="${KERNEL_NAME} finished with errors... Attaching Logs" \
          -F document=@"${PWD}/log.txt" \
          https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
