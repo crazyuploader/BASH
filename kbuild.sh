@@ -70,7 +70,8 @@ export SUBARCH="arm64"
 
 # Telegram Message
 # echo ""
-# curl -s -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
+# curl --silent --fail \
+#         -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
 #         -d text="CI Build -- ${DIRNAME} at Version: ${KERNEL_VERSION}"         \
 #         -d chat_id="${KERNEL_CHAT_ID}"                                       \
 #         -d parse_mode=HTML
@@ -102,7 +103,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
     cd "${ANYKERNEL_DIR}" || exit
     zip -r9 "${ZIPNAME}" ./*
     echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
-    curl -s \
+    curl --silent --fail \
          -F chat_id="${KERNEL_CHAT_ID}" \
          -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG} -- BRANCH: ${BRANCH}" \
          -F document=@"$(pwd)/${ZIPNAME}" \
@@ -114,7 +115,7 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
     fi
     rm -rf "${ZIPNAME}" Image.gz-dtb
 else
-    curl -s \
+    curl --silent \
          -F chat_id="${KERNEL_CHAT_ID}" \
          -F caption="${KERNEL_NAME} finished with errors... Attaching Logs" \
          -F document=@"${PWD}/log.txt" \
