@@ -80,20 +80,21 @@ function KSETUP() {
         sudo apt-get upgrade -y
         NEWLINE
         sudo apt-get install -y      \
-                             curl     \
-                             git       \
-                             python3    \
-                             python3-pip \
-                             bc           \
-                             tar           \
-                             make           \
-                             wget            \
-                             gcc              \
-                             clang             \
-                             libssl-dev         \
-                             zip                 \
-                             mplayer              \
-                             shellcheck
+            curl     \
+            git       \
+            python3    \
+            python3-pip \
+            bc           \
+            tar           \
+            make           \
+            wget            \
+            gcc              \
+            python-is-python3 \
+            clang              \
+            libssl-dev          \
+            zip                  \
+            mplayer               \
+            shellcheck
 
     else
         echo "Installing nothing, off you go!"

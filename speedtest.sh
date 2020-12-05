@@ -26,7 +26,7 @@ if [[ -z "$(command -v lsb_release)" ]]; then
 fi
 
 apt-get install -y \
-     gnupg1 apt-transport-https dirmngr
+    gnupg1 apt-transport-https dirmngr
 INSTALL_KEY="379CE192D401AB61"
 DEB_DISTRO="$(lsb_release -sc)"
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ${INSTALL_KEY}

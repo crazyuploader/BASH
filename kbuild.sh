@@ -71,10 +71,10 @@ export SUBARCH="arm64"
 # Telegram Message
 # echo ""
 # curl --silent --fail \
-#         -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
-#         -d text="CI Build -- ${DIRNAME} at Version: ${KERNEL_VERSION}"         \
-#         -d chat_id="${KERNEL_CHAT_ID}"                                       \
-#         -d parse_mode=HTML
+    #         -X POST https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendMessage \
+    #         -d text="CI Build -- ${DIRNAME} at Version: ${KERNEL_VERSION}"      \
+    #         -d chat_id="${KERNEL_CHAT_ID}"                                       \
+    #         -d parse_mode=HTML
 
 START="$(date +"%s")"
 echo ""
@@ -85,12 +85,12 @@ echo "Clang Version: ${CLANG_VERSION}"
 # Compilation
 echo ""
 make O=out ARCH=arm64 "${DEF_CONFIG}"
-make -j"$(nproc --all)"                                                     \
-        O=out ARCH=arm64                                                     \
-        CC="${CC}"                                                            \
-        CLANG_TRIPLE="aarch64-linux-gnu-"                                      \
-        CROSS_COMPILE="${GCC_DIR}"                                              \
-        CROSS_COMPILE_ARM32="${GCC32_DIR}" | tee -a log.txt
+make -j"$(nproc --all)"                                                 \
+    O=out ARCH=arm64                                                     \
+    CC="${CC}"                                                            \
+    CLANG_TRIPLE="aarch64-linux-gnu-"                                      \
+    CROSS_COMPILE="${GCC_DIR}"                                              \
+    CROSS_COMPILE_ARM32="${GCC32_DIR}" | tee -a log.txt
 
 # Time Difference
 END="$(date +"%s")"
@@ -103,24 +103,25 @@ if [[ -f "$(pwd)/out/arch/arm64/boot/Image.gz-dtb" ]]; then
     cd "${ANYKERNEL_DIR}" || exit
     zip -r9 "${ZIPNAME}" ./*
     echo "Build Finished in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
-    curl --silent --fail \
-         -F chat_id="${KERNEL_CHAT_ID}" \
-         -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG} -- BRANCH: ${BRANCH}" \
-         -F document=@"$(pwd)/${ZIPNAME}" \
-         https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
+    curl --silent --fail                                                                                         \
+        -F chat_id="${KERNEL_CHAT_ID}"                                                                            \
+        -F caption="${KERNEL_NAME} at Version: ${KERNEL_VERSION} -- DEFCONFIG: ${DEF_CONFIG} -- BRANCH: ${BRANCH}" \
+        -F document=@"$(pwd)/${ZIPNAME}"                                                                            \
+        https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
     EXIT_CODE="${?}"
     if [[ "${EXIT_CODE}" -ne "0" ]]; then
+        echo ""
         echo "Sending zip failed using curl, trying ffsend"
         SEND_FILE "$(pwd)"/"${ZIPNAME}"
     fi
     rm -rf "${ZIPNAME}" Image.gz-dtb
 else
-    curl --silent \
-         -F chat_id="${KERNEL_CHAT_ID}" \
-         -F caption="${KERNEL_NAME} finished with errors... Attaching Logs" \
-         -F document=@"${PWD}/log.txt" \
-         https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
-    echo "Built with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
+    curl --silent                                                        \
+        -F chat_id="${KERNEL_CHAT_ID}"                                    \
+        -F caption="${KERNEL_NAME} finished with errors... Attaching Logs" \
+        -F document=@"${PWD}/log.txt"                                       \
+        https://api.telegram.org/bot"${BOT_API_TOKEN}"/sendDocument
+    echo "Built Finished with errors! Time Taken: $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)."
     exit 1
 fi
 rm -rf "${PWD}"/log.txt

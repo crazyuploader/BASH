@@ -84,12 +84,12 @@ make O=out ARCH=arm64 "$DEFCONFIG"
 # Compilation
 START=$(date +"%s")
 make -j"${CORES}"                                                        \
-        O=out                                                             \
-        ARCH=arm64                                                         \
-        CC="${TOOLCHAIN}/clang/bin/clang"                                   \
-        CLANG_TRIPLE="aarch64-linux-gnu-"                                    \
-        CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-"           \
-        CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
+    O=out                                                             \
+    ARCH=arm64                                                         \
+    CC="${TOOLCHAIN}/clang/bin/clang"                                   \
+    CLANG_TRIPLE="aarch64-linux-gnu-"                                    \
+    CROSS_COMPILE="${TOOLCHAIN}/gcc/bin/aarch64-linux-android-"           \
+    CROSS_COMPILE_ARM32="${TOOLCHAIN}/gcc32/bin/arm-linux-androideabi-"
 
 # Time Difference
 END=$(date +"%s")

@@ -30,7 +30,7 @@ for dir in */; do
         DIR_TB="${dir} ${DIR_TB}"
         ((NUM_TB = NUM_TB + 1))
     fi
-	cd ..
+    cd ..
 done
 echo -e "${GREEN}" "Available Directorie(s) -${NC}"
 for f in ${DIR_TB}; do
