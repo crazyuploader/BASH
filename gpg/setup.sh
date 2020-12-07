@@ -25,6 +25,7 @@ echo -e "${GREEN}Done setting GPG Keys${NC}"
 echo ""
 echo -e "Confirm the same by running -\n\n\techo \"Test\" | gpg --clearsign"
 
+echo ""
 if [[ -z "${GPG_KEY}" ]]; then
 	echo -e "${YELLOW}'GPG_KEY' variable not provided, won't setup GIT GPG${NC}"
 else
