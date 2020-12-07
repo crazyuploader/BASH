@@ -22,7 +22,7 @@ docker run --rm -v "${PWD}":/mnt -w /mnt mvdan/shfmt -w .
 # Making Shell Scripts Executables
 LIST_FILES="$(find . -path ./.git -prune -o -name '*.sh' -print | sed 's|^./||' | sort)"
 for file in ${LIST_FILES}; do
-	echo "chmod +x ${file}"
+	chmod +x "${file}"
 done
 
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
