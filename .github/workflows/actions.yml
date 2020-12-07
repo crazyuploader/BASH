@@ -9,7 +9,13 @@ jobs:
       - name: bash check_sh.sh
         run: |
           ./check_sh.sh
-      
+
+      - name: Run shfmt
+        run: |
+          bash run_shfmt.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run the sh-checker
         uses: luizm/action-sh-checker@v0.1.9
         env:
