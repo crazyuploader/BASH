@@ -4,17 +4,9 @@ set -e
 # Script to install RIPE Atlas Software Probe
 
 # Install Required Packages
-apt-get update
-apt-get -y install \
-	git
-tar
-fakeroot
-libssl-dev
-libcap2-bin
-autoconf
-automake
-libtool
-build-essential
+sudo apt-get update
+sudo apt-get -y install \
+	git tar fakeroot libssl-dev libcap2-bin autoconf automake libtool build-essential
 
 BRANCH="${1}"
 
