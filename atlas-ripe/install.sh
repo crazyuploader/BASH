@@ -19,5 +19,6 @@ fi
 ./ripe-atlas-software-probe/build-config/debian/bin/make-deb
 sudo dpkg -i atlasswprobe*.deb
 echo ""
-echo -e "Public Key -\n\t$(cat /var/atlas-probe/etc/probe_key.pub)"
+echo -e "Public can be found at -\n\t/var/atlas-probe/etc/probe_key.pub"
 echo ""
+echo "Done!"
