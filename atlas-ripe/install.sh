@@ -6,22 +6,22 @@ set -e
 # Install Required Packages
 apt-get update
 apt-get -y install \
-        git 
-        tar
-        fakeroot
-        libssl-dev
-        libcap2-bin
-        autoconf
-        automake
-        libtool
-        build-essential
+	git
+tar
+fakeroot
+libssl-dev
+libcap2-bin
+autoconf
+automake
+libtool
+build-essential
 
 BRANCH="${1}"
 
 if [[ -z "${BRANCH}" ]]; then
-    git clone --recursive https://github.com/RIPE-NCC/ripe-atlas-software-probe.git
+	git clone --recursive https://github.com/RIPE-NCC/ripe-atlas-software-probe.git
 else
-    git clone --recursive https://github.com/RIPE-NCC/ripe-atlas-software-probe.git -b "${BRANCH}"
+	git clone --recursive https://github.com/RIPE-NCC/ripe-atlas-software-probe.git -b "${BRANCH}"
 fi
 
 ./ripe-atlas-software-probe/build-config/debian/bin/make-deb
