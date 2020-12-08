@@ -21,6 +21,7 @@ echo "${GNUGPG}" | base64 -d | tar --no-same-owner -xzvf -
 cd "${CURRENT_DIR}" || exit 1
 GPG_TTY=$(tty)
 export GPG_TTY
+echo -e "\n# GPG TTY Variable\n\nexport GPG_TTY=\$(tty)" >> ~/.bashrc
 echo -e "${GREEN}Done setting GPG Keys${NC}"
 echo ""
 echo -e "Confirm the same by running -\n\n\techo \"Test\" | gpg --clearsign"
