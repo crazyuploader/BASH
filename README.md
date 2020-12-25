@@ -1,7 +1,6 @@
 # Bash
 
 [![ShellCheck](https://github.com/crazyuploader/Bash/workflows/ShellCheck/badge.svg)](https://github.com/crazyuploader/Bash/actions)
-[![Build Status](https://travis-ci.com/crazyuploader/Bash.svg?branch=master)](https://travis-ci.com/crazyuploader/Bash)
 [![Build Status](https://crazyuploader.semaphoreci.com/badges/Bash.svg)](https://crazyuploader.semaphoreci.com/projects/Bash)
 [![CodeFactor](https://www.codefactor.io/repository/github/crazyuploader/bash/badge)](https://www.codefactor.io/repository/github/crazyuploader/bash)
 
