@@ -1,4 +1,4 @@
-# Bash
+# BASH
 
 [![ShellCheck](https://github.com/crazyuploader/Bash/workflows/ShellCheck/badge.svg)](https://github.com/crazyuploader/Bash/actions)
 [![Build Status](https://crazyuploader.semaphoreci.com/badges/Bash.svg)](https://crazyuploader.semaphoreci.com/projects/Bash)
