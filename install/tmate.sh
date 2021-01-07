@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -e
+set -eu
+set -o pipefail
 
 # Tmate Installer Script
 

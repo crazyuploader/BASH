@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -e
+set -eu
+set -o pipefail
 
 # Script to install official Speedtest.net CLI on Ubuntu
 # NOTE: Only bionic, xeniel are supported as of now

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -e
+set -eu
+set -o pipefail
 
 # Script to install RIPE Atlas Software Probe
 
