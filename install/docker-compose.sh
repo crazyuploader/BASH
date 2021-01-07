@@ -25,29 +25,29 @@ fi
 
 # Check Docker
 if [[ -z "$(command -v docker)" ]]; then
-    echo -e "${YELLOW}Docker is not installed on the system${NC}"
-    echo ""
-    echo "Install Docker by running -"
-    echo ""
-    echo -e "\tcurl -s https://raw.githubusercontent.com/crazyuploader/BASH/master/install/docker.sh | bash -"
-    echo ""
-    echo "Exiting..."
-    exit 0
+	echo -e "${YELLOW}Docker is not installed on the system${NC}"
+	echo ""
+	echo "Install Docker by running -"
+	echo ""
+	echo -e "\tcurl -s https://raw.githubusercontent.com/crazyuploader/BASH/master/install/docker.sh | bash -"
+	echo ""
+	echo "Exiting..."
+	exit 0
 else
-    echo -e "${GREEN}Docker Installed, continuing...${NC}"
+	echo -e "${GREEN}Docker Installed, continuing...${NC}"
 fi
 
 # Check Docker-Compose
 if [[ ! -z "$(command -v docker-compose)" ]]; then
-    echo -e "${YELLOW}Docker-Compose already installed, exiting...${NC}"
-    exit 0
+	echo -e "${YELLOW}Docker-Compose already installed, exiting...${NC}"
+	exit 0
 fi
 
 # Function for Latest GitHub Release Version
 get_latest_release() {
-  curl --silent "https://api.github.com/repos/docker/compose/releases/latest" |
-    grep '"tag_name":' |
-    sed -E 's/.*"([^"]+)".*/\1/'
+	curl --silent "https://api.github.com/repos/docker/compose/releases/latest" |
+		grep '"tag_name":' |
+		sed -E 's/.*"([^"]+)".*/\1/'
 }
 
 # Variables
