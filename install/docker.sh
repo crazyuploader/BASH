@@ -33,19 +33,6 @@ if [[ ! -z "$(command -v docker)" ]]; then
 	exit 0
 fi
 
-function create_docker_nonroot() {
-	if [[ ! -z "${1}" ]]; then
-		id -u "${1}" &>/dev/null
-		EXIT_CODE="${?}"
-		if [[ "${EXIT_CODE}" -ne "0" ]]; then
-			echo "User Doesn't Exist, Won't ${1} to Docker User Group"
-		else
-			usermod -aG docker "${1}"
-			echo "'${1}' added to Docker User Group"
-		fi
-	fi
-}
-
 # Installing Docker
 echo "Installing Docker..."
 echo ""
@@ -61,4 +48,3 @@ apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 echo ""
 echo -e "Docker Installed Version: ${GREEN}$(docker --version | cut -d " " -f 3,4,5)${NC}"
-create_docker_nonroot "${1}"
