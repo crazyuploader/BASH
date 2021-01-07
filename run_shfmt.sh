@@ -14,7 +14,7 @@ YELLOW="\033[1;33m"
 NC="\033[0m"
 
 # Variables
-GH_REF="github.com/crazyuploader/Bash.git"
+GH_REF="github.com/crazyuploader/BASH.git"
 
 # Run shfmt
 docker run --rm -v "${PWD}":/mnt -w /mnt mvdan/shfmt -w .
