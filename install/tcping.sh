@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # Script to install tcping and make it executable under 'bin' folder
 

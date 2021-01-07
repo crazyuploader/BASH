@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -e
+
+# Tmate Installer Script
 
 # Variables
 VERSION="2.4.0"

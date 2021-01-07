@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+set -e
+
+# Script To Run shfmt
 
 # Check Docker
-
 if [[ -z "$(command -v docker)" ]]; then
 	echo "Docker not found!"
 	echo "Exiting..."

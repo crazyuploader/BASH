@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 # Script to install ffsend
 
