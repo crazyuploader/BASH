@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -eu
-set -o pipefail
 
 # Script to install tcping and make it executable under 'bin' folder
 
