@@ -15,10 +15,3 @@ jobs:
           bash run_shfmt.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run the sh-checker
-        uses: luizm/action-sh-checker@v0.1.9
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          sh_checker_comment: true
