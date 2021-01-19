@@ -12,7 +12,3 @@ blocks:
           commands:
             - checkout
             - bash check_sh.sh
-      prologue:
-        commands:
-          - sudo apt-get update
-          - sudo apt-get install -y shellcheck
