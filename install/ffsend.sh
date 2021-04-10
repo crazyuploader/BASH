@@ -5,7 +5,7 @@ set -o pipefail
 # Script to install ffsend
 
 # Variables
-VERSION="v0.2.68"
+VERSION="v0.2.71"
 FNAME="ffsend-${VERSION}-linux-x64-static"
 
 # Colors
