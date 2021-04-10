@@ -38,7 +38,7 @@ else
 fi
 
 # Check Docker-Compose
-if [[ ! -z "$(command -v docker-compose)" ]]; then
+if [[ -n "$(command -v docker-compose)" ]]; then
 	echo -e "${YELLOW}Docker-Compose already installed, exiting...${NC}"
 	exit 0
 fi
