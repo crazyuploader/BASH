@@ -24,7 +24,7 @@ else
 fi
 
 # Docker Check
-if [[ ! -z "$(command -v docker)" ]]; then
+if [[ -n "$(command -v docker)" ]]; then
 	echo "Docker is Already Present on the System"
 	echo ""
 	echo -e "Docker Version: ${GREEN}$(docker --version | cut -d " " -f 3,4,5)${NC}"
