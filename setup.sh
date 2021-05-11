@@ -14,7 +14,7 @@ HUB_NAME="crazyuploader"
 HUB_EMAIL="49350241+crazyuploader@users.noreply.github.com"
 
 # Repositories
-BASH="git@github.com:crazyuploader/Bash.git"
+BASH="git@github.com:crazyuploader/BASH.git"
 PYTHON="git@github.com:crazyuploader/Python.git"
 CPP="git@github.com:crazyuploader/CPP.git"
 C="git@github.com:crazyuploader/C.git"
