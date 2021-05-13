@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Created By Jugal Kishore -- 2020
-# Setup Helper v1.0
+# Created By Jugal Kishore -- 2021
+# Setup Helper v2.0
 
 # Colors
 NC="\033[0m"
@@ -16,10 +16,9 @@ HUB_EMAIL="49350241+crazyuploader@users.noreply.github.com"
 # Repositories
 BASH="git@github.com:crazyuploader/Bash.git"
 PYTHON="git@github.com:crazyuploader/Python.git"
-CPP="git@github.com:crazyuploader/CPP.git"
-C="git@github.com:crazyuploader/C.git"
-COLLEGESTUFF="git@github.com:crazyuploader/CollegeStuff.git"
-DATA="git@github.com:crazyuploader/Data.git"
+TIL="git@github.com:crazyuploader/TIL.git"
+PINGER="git@github.com:crazyuploader/Pinger.git"
+OSL="git@github.com:crazyuploader/OSL.git"
 DOCKER="git@github.com:crazyuploader/Docker-Builder.git"
 
 # Custom Functions
@@ -179,34 +178,25 @@ NEWLINE
 CLONE "$PYTHON" python
 sleep 1
 clear
-echo -e "CPP at:${GREEN} ${CPP}${NC}"
-NEWLINE
-CLONE "$CPP" cpp
-sleep 1
-clear
-echo -e "C at:${GREEN} ${C}${NC}"
-NEWLINE
-CLONE "$C" c
-sleep 1
-clear
 echo -e "Bash at:${GREEN} ${BASH}${NC}"
 NEWLINE
 CLONE "$BASH" bash
 sleep 1
 clear
-echo -e "CollegeStuff at:${GREEN} ${COLLEGESTUFF}${NC}"
-NEWLINE
-CLONE "$COLLEGESTUFF" collegestuff
-sleep 1
-clear
-echo -e "Data at: ${GREEN} ${DATA}${NC}"
-NEWLINE
-CLONE "$DATA" data
-sleep 1
-clear
 echo -e "Docker at: ${GREEN} ${DOCKER}${NC}"
 NEWLINE
 CLONE "$DOCKER" docker
+clear
+echo -e "TIL at: ${GREEN} ${TIL}${NC}"
+NEWLINE
+sleep 1
+clear
+echo -e "Pinger at: ${GREEN} ${PINGER}${NC}"
+NEWLINE
+sleep 1
+clear
+echo -e "OSL at: ${GREEN} ${OSL}${NC}"
+NEWLINE
 sleep 1
 clear
 echo "Getting Update Helper in current directory"
