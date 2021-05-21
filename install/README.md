@@ -2,6 +2,14 @@
 
 > Some of the Automated Installer Scripts
 
+- [`caddy-server.sh`](install/caddy-server.sh)
+
+Caddy Server Installer Script
+
+- [`docker-compose.sh`](install/docker-compose.sh)
+
+Docker-Compose Installer Script
+
 - [`docker.sh`](install/docker.sh)
 
 Docker Installer Script
