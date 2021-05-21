@@ -10,6 +10,13 @@ NC="\033[0m"
 YELLOW="\033[1;33m"
 RED="\033[0;31m"
 
+# Check if Caddy Server exists
+if [[ -n "$(command -v caddy)" ]]; then
+	echo -e "${YELLOW}Caddy Server $(caddy version)${NC} already exists!"
+	echo "Exiting..."
+	exit 0
+fi
+
 # Root Check
 if [[ "${EUID}" -ne "0" ]]; then
 	echo -e "${YELLOW}Run this script as root!${NC}"
@@ -21,14 +28,19 @@ else
 fi
 
 # Installing dependencies
+echo "+ apt-get install -y debian-keyring debian-archive-keyring apt-transport-https +"
 apt-get install -y debian-keyring debian-archive-keyring apt-transport-https
 
 # Adding GPG Key and Setting Repository
+echo "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add -"
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add -
+echo "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list"
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
 
 # Update apt packages
+echo "apt-get update"
 apt-get update
 
 # Install Caddy Server
+echo "apt-get install -y caddy"
 apt-get install -y caddy

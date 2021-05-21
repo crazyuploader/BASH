@@ -24,7 +24,6 @@ apt-get install -y speedtest
 
 if [[ -n "$(command -v speedtest)" ]]; then
 	echo -e "${GREEN}Speedtest CLI installed!${NC}"
-	echo ""
 	speedtest --version
 else
 	echo -e "${RED}Speedtest CLI not installed!${NC}"
