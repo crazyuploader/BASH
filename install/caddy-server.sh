@@ -28,19 +28,19 @@ else
 fi
 
 # Installing dependencies
-echo "+ apt-get install -y debian-keyring debian-archive-keyring apt-transport-https +"
+echo "Running... apt-get install -y debian-keyring debian-archive-keyring apt-transport-https"
 apt-get install -y debian-keyring debian-archive-keyring apt-transport-https
 
 # Adding GPG Key and Setting Repository
-echo "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add -"
+echo "Running... curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add -"
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | apt-key add -
-echo "curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list"
+echo "Running... curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list"
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
 
 # Update apt packages
-echo "apt-get update"
+echo "Running... apt-get update"
 apt-get update
 
 # Install Caddy Server
-echo "apt-get install -y caddy"
+echo "Running... apt-get install -y caddy"
 apt-get install -y caddy
