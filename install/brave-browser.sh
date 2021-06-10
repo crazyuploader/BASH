@@ -11,10 +11,10 @@ YELLOW="\033[1;33m"
 RED="\033[0;31m"
 
 if [[ -n "$(command -v brave-browser)" ]]; then
-    echo "Brave Browser already seems to be installed on the system"
-    echo -e "Version: ${GREEN}$(brave-browser --version)${NC}"
-    echo -e "${YELLOW}Exiting...${NC}"
-    exit 0
+	echo "Brave Browser already seems to be installed on the system"
+	echo -e "Version: ${GREEN}$(brave-browser --version)${NC}"
+	echo -e "${YELLOW}Exiting...${NC}"
+	exit 0
 fi
 
 # Root Check
