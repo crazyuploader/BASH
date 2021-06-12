@@ -4,34 +4,34 @@
 
 ---
 
-- [`brave-browser.sh`](brave-browser.sh)
-
 Brave Browser Installer Script
 
-- [`caddy-server.sh`](caddy-server.sh)
+- [`brave-browser.sh`](brave-browser.sh)
 
 Caddy Server Installer Script
 
-- [`docker-compose.sh`](docker-compose.sh)
+- [`caddy-server.sh`](caddy-server.sh)
 
 Docker-Compose Installer Script
 
-- [`docker.sh`](docker.sh)
+- [`docker-compose.sh`](docker-compose.sh)
 
 Docker Installer Script
 
-- [`ffsend.sh`](ffsend.sh)
+- [`docker.sh`](docker.sh)
 
 ffsend Installer Script
 
-- [`speedtest.sh`](speedtest.sh)
+- [`ffsend.sh`](ffsend.sh)
 
 Offical SpeedTest CLI Installer Script
 
-- [`tcping.sh`](tcping.sh)
+- [`speedtest.sh`](speedtest.sh)
 
 tcping Installer Script
 
-- [`tmate.sh`](tmate.sh)
+- [`tcping.sh`](tcping.sh)
 
 tmate Installer Script
+
+- [`tmate.sh`](tmate.sh)
