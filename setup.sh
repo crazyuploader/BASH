@@ -21,33 +21,33 @@ fi
 # Installing Package(s)
 apt-get update
 apt-get install -y --no-install-recommends \
-                    git \
-                    curl \
-                    python3 \
-                    python3-pip \
-                    wget \
-                    nano \
-                    tar \
-                    zip \
-                    unzip \
-                    python-is-python3 \
-                    neofetch \
-                    gpg \
-                    ssh \
-                    xz-utils \
-                    iputils-ping \
-                    traceroute \
-                    mtr-tiny \
-                    net-tools \
-                    nmap \
-                    iftop \
-                    tmux \
-                    screen \
-                    gpg-agent \
-                    jq \
-                    python3-venv \
-                    tree \
-                    shellcheck 1> /dev/null
+	git \
+	curl \
+	python3 \
+	python3-pip \
+	wget \
+	nano \
+	tar \
+	zip \
+	unzip \
+	python-is-python3 \
+	neofetch \
+	gpg \
+	ssh \
+	xz-utils \
+	iputils-ping \
+	traceroute \
+	mtr-tiny \
+	net-tools \
+	nmap \
+	iftop \
+	tmux \
+	screen \
+	gpg-agent \
+	jq \
+	python3-venv \
+	tree \
+	shellcheck 1>/dev/null
 
 # Installing Docker and Docker Compose
 curl -sL https://get.docker.com | bash -
