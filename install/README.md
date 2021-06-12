@@ -2,6 +2,8 @@
 
 > Some of the Automated Installer Scripts
 
+---
+
 - [`brave-browser.sh`](brave-browser.sh)
 
 Brave Browser Installer Script
