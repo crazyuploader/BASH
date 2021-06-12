@@ -2,30 +2,34 @@
 
 > Some of the Automated Installer Scripts
 
-- [`caddy-server.sh`](install/caddy-server.sh)
+- [`brave-browser.sh`](brave-browser.sh)
+
+Brave Browser Installer Script
+
+- [`caddy-server.sh`](caddy-server.sh)
 
 Caddy Server Installer Script
 
-- [`docker-compose.sh`](install/docker-compose.sh)
+- [`docker-compose.sh`](docker-compose.sh)
 
 Docker-Compose Installer Script
 
-- [`docker.sh`](install/docker.sh)
+- [`docker.sh`](docker.sh)
 
 Docker Installer Script
 
-- [`ffsend.sh`](install/ffsend.sh)
+- [`ffsend.sh`](ffsend.sh)
 
 ffsend Installer Script
 
-- [`speedtest.sh`](install/speedtest.sh)
+- [`speedtest.sh`](speedtest.sh)
 
 Offical SpeedTest CLI Installer Script
 
-- [`tcping.sh`](install/tcping.sh)
+- [`tcping.sh`](tcping.sh)
 
 tcping Installer Script
 
-- [`tmate.sh`](install/tmate.sh)
+- [`tmate.sh`](tmate.sh)
 
 tmate Installer Script
