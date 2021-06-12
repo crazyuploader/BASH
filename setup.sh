@@ -28,9 +28,9 @@ apt-get install -y --no-install-recommends \
 	wget \
 	nano \
 	tar \
-    make \
-    bc \
-    libssl-dev \
+	make \
+	bc \
+	libssl-dev \
 	zip \
 	unzip \
 	python-is-python3 \
