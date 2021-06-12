@@ -28,6 +28,9 @@ apt-get install -y --no-install-recommends \
 	wget \
 	nano \
 	tar \
+    make \
+    bc \
+    libssl-dev \
 	zip \
 	unzip \
 	python-is-python3 \
@@ -51,6 +54,7 @@ apt-get install -y --no-install-recommends \
 
 # Installing Docker and Docker Compose
 curl -sL https://get.docker.com | bash -
+curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/docker-compose.sh | bash -
 
 # Installing Speedtest CLI
 curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/speedtest.sh | bash -
