@@ -20,7 +20,6 @@ if [[ "${EUID}" -ne "0" ]]; then
 	exit 1
 fi
 
-clear
 echo "Downloading..."
 wget -q https://github.com/timvisee/ffsend/releases/download/"${VERSION}"/"${FNAME}"
 EXIT_CODE="${?}"
