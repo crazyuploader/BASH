@@ -51,8 +51,8 @@ apt-get install -y --no-install-recommends \
 	python3-venv \
 	python-is-python3 \
 	screen \
-	shellcheck
-ssh \
+	shellcheck \
+	ssh \
 	tar \
 	tmux \
 	traceroute \
