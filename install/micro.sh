@@ -6,11 +6,11 @@ set -o pipefail
 # https://github.com/zyedidia/micro
 
 function move() {
-    if [[ -z "$(command -v sudo)" ]]; then
-        mv ./micro /usr/bin
-    else
-        sudo mv ./micro /usr/bin
-    fi
+	if [[ -z "$(command -v sudo)" ]]; then
+		mv ./micro /usr/bin
+	else
+		sudo mv ./micro /usr/bin
+	fi
 }
 
 curl https://getmic.ro | bash
