@@ -18,42 +18,53 @@ else
 	sleep 1
 fi
 
+function check_user() {
+	USER="$(id -u jungle)"
+	EXIT_CODE="${?}"
+	if [[ "${EXIT_CODE}" -eq "0" ]]; then
+		echo "Adding user \"jungle\" to 'docker' group"
+		usermod -aG docker jungle
+		echo "Added 'jungle' to 'docker' group..."
+	fi
+}
+
 # Installing Package(s)
 apt-get update
 apt-get install -y --no-install-recommends \
-	git \
-	curl \
-	python3 \
-	python3-pip \
-	wget \
-	nano \
-	tar \
-	make \
 	bc \
-	libssl-dev \
-	zip \
-	unzip \
-	python-is-python3 \
-	neofetch \
+	curl \
+	git \
 	gpg \
-	ssh \
-	xz-utils \
+	gpg-agent \
+	iftop \
 	iputils-ping \
-	traceroute \
+	jq \
+	libssl-dev \
+	make \
 	mtr-tiny \
+	nano \
+	neofetch \
 	net-tools \
 	nmap \
-	iftop \
-	tmux \
-	screen \
-	gpg-agent \
-	jq \
+	python3 \
+	python3-pip \
 	python3-venv \
+	python-is-python3 \
+	screen \
+	shellcheck
+	ssh \
+	tar \
+	tmux \
+	traceroute \
 	tree \
-	shellcheck 1>/dev/null
+	unzip \
+	wget \
+	xz-utils \
+	zip \
 
 # Installing Docker and Docker Compose
 curl -sL https://get.docker.com | bash -
+check_user
 curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/docker-compose.sh | bash -
 
 # Installing Speedtest CLI
@@ -64,3 +75,17 @@ curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/bra
 
 # Installing ffsend
 curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/ffsend.sh | bash -
+
+echo -e "${GREEN}Script Finished!${NC}"
+echo ""
+echo "================================================================"
+echo ""
+echo -e "Docker Version: ${YELLOW}$(docker --version)${NC}"
+echo ""
+echo -e "Docker Compose Version: ${YELLOW}$(docker-compose --version)${NC}"
+echo ""
+echo -e "Speedtest Version: ${YELLOW}$(speedtest --version)${NC}"
+echo ""
+echo -e "Brave Version: ${YELLOW}$(brave-browser --version)${NC}"
+echo ""
+echo -e "ffsend Version: ${YELLOW}$(ffsend --version)${NC}"
