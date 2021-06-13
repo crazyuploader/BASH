@@ -24,6 +24,10 @@ ffsend Installer Script
 
 - [`ffsend.sh`](ffsend.sh)
 
+Micro Text Editor Script
+
+- [`micro.sh`](micro.sh)
+
 Offical SpeedTest CLI Installer Script
 
 - [`speedtest.sh`](speedtest.sh)

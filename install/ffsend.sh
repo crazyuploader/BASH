@@ -20,7 +20,7 @@ if [[ "${EUID}" -ne "0" ]]; then
 	exit 1
 fi
 
-echo "Downloading..."
+echo "Downloading ffsend ${VERSION}..."
 wget -q https://github.com/timvisee/ffsend/releases/download/"${VERSION}"/"${FNAME}"
 EXIT_CODE="${?}"
 if [[ "${EXIT_CODE}" -ne "0" ]]; then
