@@ -52,7 +52,7 @@ apt-get install -y --no-install-recommends \
 	python-is-python3 \
 	screen \
 	shellcheck
-	ssh \
+ssh \
 	tar \
 	tmux \
 	traceroute \
@@ -60,7 +60,7 @@ apt-get install -y --no-install-recommends \
 	unzip \
 	wget \
 	xz-utils \
-	zip \
+	zip
 
 # Installing Docker and Docker Compose
 curl -sL https://get.docker.com | bash -
