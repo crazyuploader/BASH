@@ -70,7 +70,7 @@ curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/doc
 # Running Docker Container(s)
 echo "Pulling adolfintel/speedtest..."
 docker pull adolfintel/speedtest >/dev/null 2>&1
-docker run --restart=unless-stopped --name=speedtest -e MODE=standalone -p 80:80 --detach adolfintel/speedtest
+docker run --restart=unless-stopped --name=speedtest -e MODE=standalone -p 12345:80 --detach adolfintel/speedtest
 
 # Installing Speedtest CLI
 curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/speedtest.sh | bash -
