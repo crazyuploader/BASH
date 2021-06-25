@@ -189,14 +189,17 @@ CLONE "$DOCKER" docker
 clear
 echo -e "TIL at: ${GREEN} ${TIL}${NC}"
 NEWLINE
+CLONE "$TIL" til
 sleep 1
 clear
 echo -e "Pinger at: ${GREEN} ${PINGER}${NC}"
 NEWLINE
+CLONE "$PINGER" pinger
 sleep 1
 clear
 echo -e "OSL at: ${GREEN} ${OSL}${NC}"
 NEWLINE
+CLONE "$OSL" osl
 sleep 1
 clear
 echo "Getting Update Helper in current directory"
