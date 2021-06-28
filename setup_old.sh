@@ -11,7 +11,7 @@ YELLOW="\033[1;33m"
 
 # Git Identity
 HUB_NAME="crazyuploader"
-HUB_EMAIL="49350241+crazyuploader@users.noreply.github.com"
+HUB_EMAIL="me@devjugal.com"
 
 # Repositories
 BASH="git@github.com:crazyuploader/BASH.git"
