@@ -6,7 +6,14 @@ set -o pipefail
 
 # Variables
 VERSION="2.4.0"
-NAME="tmate-${VERSION}-static-linux-amd64"
+
+if [[ "$(arch)" == "aarch64" ]]; then
+	ARCH="arm64v8"
+else
+	ARCH="$(arch)"
+fi
+
+NAME="tmate-${VERSION}-static-linux-${ARCH}"
 
 # Root check
 if [[ "${EUID}" -ne "0" ]]; then
