@@ -7,11 +7,24 @@ set -o pipefail
 # Variables
 VERSION="2.4.0"
 
-if [[ "$(arch)" == "aarch64" ]]; then
-	ARCH="arm64v8"
-else
-	ARCH="$(arch)"
-fi
+OS_ARCH="$(arch)"
+
+case ${OS_ARCH} in
+
+	x86_64)
+		ARCH="amd64"
+		;;
+	
+	aarch64)
+		ARCH="arm64v8"
+		;;
+	
+	*)
+		echo "Unsupported Architecture"
+		echo "Exiting..."
+		exit 1
+		;;
+esac
 
 NAME="tmate-${VERSION}-static-linux-${ARCH}"
 
