@@ -1,5 +1,11 @@
 name: ShellCheck
-on: [push, pull_request]
+
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+
 jobs:
   shell-check:
     runs-on: ubuntu-latest
