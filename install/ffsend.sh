@@ -20,6 +20,13 @@ if [[ "${EUID}" -ne "0" ]]; then
 	exit 1
 fi
 
+# Arch Check
+if [[ "$(arch)" != "x86_64" ]]; then
+	echo "Architecture Not Supported!"
+	echo "Exiting..."
+	exit 0
+fi
+
 echo "Downloading ffsend ${VERSION}..."
 wget -q https://github.com/timvisee/ffsend/releases/download/"${VERSION}"/"${FNAME}"
 EXIT_CODE="${?}"
