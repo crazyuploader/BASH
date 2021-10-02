@@ -58,6 +58,7 @@ apt-get install -y --no-install-recommends \
 	traceroute \
 	tree \
 	unzip \
+	vim \
 	wget \
 	xz-utils \
 	zip
