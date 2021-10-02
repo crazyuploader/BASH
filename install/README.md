@@ -12,6 +12,10 @@ Caddy Server Installer Script
 
 - [`caddy-server.sh`](caddy-server.sh)
 
+Cloudflared Installer Script
+
+- [`cloudflare.sh`](cloudflare.sh)
+
 Docker-Compose Installer Script
 
 - [`docker-compose.sh`](docker-compose.sh)
