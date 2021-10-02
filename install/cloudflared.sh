@@ -36,23 +36,23 @@ OS_ARCH=$(arch)
 
 case ${OS_ARCH} in
 
-    x86_64)
-        CLOUDFLARED_ARCH=amd64
-        ;;
+x86_64)
+	CLOUDFLARED_ARCH=amd64
+	;;
 
-    aarch64)
-        CLOUDFLARED_ARCH=arm64
-        ;;
+aarch64)
+	CLOUDFLARED_ARCH=arm64
+	;;
 
-    armv7l)
-        CLOUDFLARED_ARCH=armv7
-        ;;
+armv7l)
+	CLOUDFLARED_ARCH=armv7
+	;;
 
-    *)
-        echo -e "Unsupported architecture: ${YELLOW}${OS_ARCH}${NC}"
-        echo -e "${RED}Exiting...${NC}"
-        exit 1
-        ;;
+*)
+	echo -e "Unsupported architecture: ${YELLOW}${OS_ARCH}${NC}"
+	echo -e "${RED}Exiting...${NC}"
+	exit 1
+	;;
 esac
 
 URL="https://github.com/cloudflare/cloudflared/releases/download/${CLOUDFLARED_VERSION}/cloudflared-linux-${CLOUDFLARED_ARCH}.deb"
