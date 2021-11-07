@@ -15,8 +15,8 @@ RED="\033[0;31m"
 
 # Check if Go Lang is installed
 if [[ -n "$(command -v go)" ]]; then
-    echo -e "Go Lang is already ${GREEN}installed${NC}"
-    exit 0
+	echo -e "Go Lang is already ${GREEN}installed${NC}"
+	exit 0
 fi
 
 # Variable(s)
@@ -24,20 +24,20 @@ VERSION="1.17.3"
 OS_ARCH="$(arch)"
 
 case ${OS_ARCH} in
-    
-    x86_64)
-        GO_ARCH=amd64
-    ;;
-    
-    aarch64)
-        GO_ARCH=arm64
-    ;;
-    
-    *)
-        echo -e "${YELLOW}${OS_ARCH}${NC} "
-        echo -e "${RED}Exiting...${NC}"
-        exit 1
-    ;;
+
+x86_64)
+	GO_ARCH=amd64
+	;;
+
+aarch64)
+	GO_ARCH=arm64
+	;;
+
+*)
+	echo -e "${YELLOW}${OS_ARCH}${NC} "
+	echo -e "${RED}Exiting...${NC}"
+	exit 1
+	;;
 esac
 
 # Downloading Go Lang
@@ -47,10 +47,10 @@ echo ""
 echo -e "${GREEN}Download completed...${NC}"
 echo ""
 if [[ -f "/home/jungle/.bashrc" ]]; then
-    echo "PATH=\"${PATH}:/usr/local/go/bin\"" >> /home/jungle/.bashrc
-    echo "export PATH" >> /home/jungle/.bashrc
-    echo ""
-    echo -e "${GREEN}Go Lang $(go version) is now installed.${NC}"
+	echo "PATH=\"${PATH}:/usr/local/go/bin\"" >>/home/jungle/.bashrc
+	echo "export PATH" >>/home/jungle/.bashrc
+	echo ""
+	echo -e "${GREEN}Go Lang $(go version) is now installed.${NC}"
 else
-    echo -e "${YELLOW}Go Binaries are available in /usr/local/go/bin directory...${NC}"
+	echo -e "${YELLOW}Go Binaries are available in /usr/local/go/bin directory...${NC}"
 fi
