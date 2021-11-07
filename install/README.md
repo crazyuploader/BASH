@@ -28,6 +28,10 @@ ffsend Installer Script
 
 - [`ffsend.sh`](ffsend.sh)
 
+Go Lang Installer Script
+
+- [`go.sh`](go.sh)
+
 Micro Text Editor Script
 
 - [`micro.sh`](micro.sh)
