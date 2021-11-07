@@ -47,9 +47,11 @@ echo ""
 echo -e "${GREEN}Download completed...${NC}"
 echo ""
 if [[ -f "/home/jungle/.bashrc" ]]; then
-	echo "PATH=\"${PATH}:/usr/local/go/bin\"" >>/home/jungle/.bashrc
-	echo "export GOROOT=\"/usr/local/go"\" >> /home/jungle/.bashrc
-	echo "export GOPATH==\"/home/jungle/go"\" >> /home/jungle/.bashrc
+	{
+		echo "PATH=\"${PATH}:/usr/local/go/bin\""
+		echo "export GOROOT=\"/usr/local/go"\"
+		echo "export GOPATH==\"/home/jungle/go"\" 
+	} >> /home/jungle/.bashrc
 	echo ""
 	echo -e "${GREEN}Go Lang $(go version) is now installed.${NC}"
 else
