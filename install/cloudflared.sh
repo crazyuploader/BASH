@@ -69,4 +69,5 @@ echo -e "${YELLOW}Installing Cloudflared...${NC}"
 echo ""
 dpkg -i cloudflared.deb
 echo ""
+rm cloudflared.deb
 echo -e "Cloudflared installed, version: ${GREEN}$(cloudflared --version)${NC}"
