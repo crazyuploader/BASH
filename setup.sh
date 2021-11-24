@@ -41,6 +41,7 @@ apt-get install -y --no-install-recommends \
 	jq \
 	libssl-dev \
 	make \
+	mosh \
 	mtr-tiny \
 	nano \
 	neofetch \
