@@ -18,7 +18,7 @@ else
 	sleep 1
 fi
 
-function check_user() {
+function add_user_to_docker_group() {
 	USER="$(id -u jungle)"
 	EXIT_CODE="${?}"
 	if [[ "${EXIT_CODE}" -eq "0" ]]; then
@@ -65,7 +65,7 @@ apt-get install -y --no-install-recommends \
 
 # Installing Docker and Docker Compose
 curl -sL https://get.docker.com | bash -
-check_user
+add_user_to_docker_group
 curl -sL https://raw.githubusercontent.com/crazyuploader/BASH/master/install/docker-compose.sh | bash -
 
 # Running Docker Container(s)
