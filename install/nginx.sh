@@ -9,9 +9,9 @@ NC="\033[0m"
 YELLOW="\033[1;33m"
 RED="\033[0;31m"
 
-# Check if Caddy Server exists
-if [[ -n "$(command -v caddy)" ]]; then
-	echo -e "${YELLOW}Caddy Server $(caddy version)${NC} already exists!"
+# Check if Nginx Server exists
+if [[ -n "$(command -v nginx)" ]]; then
+	echo -e "${YELLOW}Nginx Server $(nginx -version)${NC} already exists!"
 	echo "Exiting..."
 	exit 0
 fi
