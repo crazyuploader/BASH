@@ -36,6 +36,10 @@ Micro Text Editor Script
 
 - [`micro.sh`](micro.sh)
 
+Nala Installer Script
+
+- [`nala.sh`](nala.sh)
+
 Nginx Server Installer Script
 
 - [`nginx.sh`](nginx.sh)

@@ -33,6 +33,6 @@ wget -qO - https://deb.volian.org/volian/scar.key | tee /etc/apt/trusted.gpg.d/v
 
 # Update apt packages & install Nala
 apt-get update
-apt-get install nala
+apt-get install -y nala
 
 echo -e "${GREEN} $(nala --version)${NC}"
