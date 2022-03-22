@@ -48,3 +48,5 @@ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 
 # Update apt packages & install Nginx
 apt-get update
 apt-get install -y nginx
+
+echo -e "${GREEN} $(nginx -version)${NC}"
