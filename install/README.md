@@ -36,6 +36,10 @@ Micro Text Editor Script
 
 - [`micro.sh`](micro.sh)
 
+Nginx Server Installer Script
+
+- [`nginx.sh`](nginx.sh)
+
 Offical SpeedTest CLI Installer Script
 
 - [`speedtest.sh`](speedtest.sh)
