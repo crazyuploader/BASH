@@ -19,7 +19,7 @@ else
 fi
 
 function add_user_to_docker_group() {
-	USER="$(id -u jungle &> /dev/null)"
+	USER="$(id -u jungle &>/dev/null)"
 	EXIT_CODE="${?}"
 	if [[ "${EXIT_CODE}" -eq "0" ]]; then
 		echo "Adding user \"jungle\" to 'docker' group"
