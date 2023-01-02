@@ -20,7 +20,7 @@ if [[ -n "$(command -v go)" ]]; then
 fi
 
 # Variable(s)
-VERSION="1.17.3"
+VERSION="1.19.4"
 OS_ARCH="$(arch)"
 
 case ${OS_ARCH} in
